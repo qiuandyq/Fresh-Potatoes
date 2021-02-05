@@ -23,7 +23,7 @@ During the user’s initial signup we establish a basis for how movies should be
     - Trailer with movie
 - A filter that restricts movies based on their rating
     - Filtered search
-    - Account feature  -- enable filter that is based on their age
+    - Account feature -- enable filter that is based on their age
     - You can go into your individual preferences
     - A survey to quickly pull recommendations that you might like given information you filled out in the survey
 - Creating a mobile design (if we have extra time )
