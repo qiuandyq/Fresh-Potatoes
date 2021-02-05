@@ -1,14 +1,33 @@
 Project Abstract
-Fresh Potatoes is a web application dedicated in providing the most abundant movie recommendations to the customers. Fresh Potatoes will gather and organize the newest information from a variety of streaming platforms including IMDb, Netflix, Disney+, Youtube and more to eliminate the inconvenience of users seeking movies through different streaming services. Beside the variety of the movie collections, Fresh Potatoes maximizes the user experience by helping customers to find the movies they desire. For every user who logged into the application, Fresh Potatoes will ask for their permission to access through their browsing history. Fresh Potatoes will recommend specific genres of movies to the users based on their most checked movie categories. 	For newcomers, Fresh Potatoes will ask for their most interested movie types to ensure they find their best results in limited times. 
-Customers
-Fresh Potatoes targets the middle class internet consumer. The target customer currently holds subscriptions to one or more streaming services such as Netflix, Hulu, HBO, Disney+, etc… They also actively use each streaming services recommendation system to determine what they will watch. 
+Fresh Potatoes is a web application dedicated in providing the most abundant movie recommendations to the customers. Fresh Potatoes will gather and 
+organize the newest information from a variety of streaming platforms including IMDb, Netflix, Disney+, Youtube and more to eliminate the 
+inconvenience of users seeking movies through different streaming services. Beside the variety of the movie collections, Fresh Potatoes maximizes the 
+user experience by helping customers to find the movies they desire. For every user who logged into the application, Fresh Potatoes will ask for their 
+permission to access through their browsing history. Fresh Potatoes will recommend specific genres of movies to the users based on their most checked 
+movie categories. 	For newcomers, Fresh Potatoes will ask for their most interested movie types to ensure they find their best results in limited 
+times. 
 
+Customers
+Fresh Potatoes targets the middle class internet consumer. The target customer currently holds subscriptions to one or more streaming services such as 
+Netflix, Hulu, HBO, Disney+, etc… They also actively use each streaming services recommendation system to determine what they will watch. 
 An example customer:
 Rachel, Age 38, Interested in nature documentaries. 
-Rachel works a 9-5 day job. After getting home Rachel enjoys eating her dinner in front of a nature documentary to unwind. Rachel owns many different streaming services, as she feels that it gives her a wider selection of documentaries to choose from. However, this means that Rachel must search through all her accounts to compare the available movies before deciding on one to watch. Then one night, Rachel discovers Fresh Potatoes, now she is able to add all her streaming services to one dashboard which will recommend shows from across the combined library.
+Rachel works a 9-5 day job. After getting home Rachel enjoys eating her dinner in front of a nature documentary to unwind. Rachel owns many different 
+streaming services, as she feels that it gives her a wider selection of documentaries to choose from. However, this means that Rachel must search 
+through all her accounts to compare the available movies before deciding on one to watch. Then one night, Rachel discovers Fresh Potatoes, now she is 
+able to add all her streaming services to one dashboard which will recommend shows from across the combined library.
 
 Competitive Analysis
-Movie and TV databases such as Rotten Tomatoes and IMDb contain a plethora of information. While that information is sometimes useful, it also contains a lot of unnecessary clutter that people do not need such as trivia and unrelated recommendations . This makes it hard for users to find the information they want when looking for something new to watch.
-Streaming services, such as Netflix and Hulu, provide recommendations based on what the user watches on that streaming platform, however due to an increase in other companies creating their own streaming platform, these recommendations are only catered to their streaming platform. 
-TasteDive is a website that recommends movies and shows based on what the user searches for. Users are able to react to the movies they like or dislike which will save to their account for other users to see. It also includes a list of trending movies, best movies voted by the users, and movie lists created by users.
-One main goal for our project is to have a less cluttered and simplified design for users to look at while finding movie recommendations. Fresh Potatoes would solve this problem by including features that allow users to add directors, actors, etc. to recommend movies and shows based on those criteria. Another feature will be filtering movies and shows based on what streaming platforms they could be found on. Features such as allowing users to add movies or shows that they would like to watch later will be included. Users will also be able to like and dislike movies and shows to establish a user rating for others to see.
+Movie and TV databases such as Rotten Tomatoes and IMDb contain a plethora of information. While that information is sometimes useful, it also 
+contains a lot of unnecessary clutter that people do not need such as trivia and unrelated recommendations . This makes it hard for users to find the 
+information they want when looking for something new to watch.
+Streaming services, such as Netflix and Hulu, provide recommendations based on what the user watches on that streaming platform, however due to an 
+increase in other companies creating their own streaming platform, these recommendations are only catered to their streaming platform. 
+TasteDive is a website that recommends movies and shows based on what the user searches for. Users are able to react to the movies they like or 
+dislike which will save to their account for other users to see. It also includes a list of trending movies, best movies voted by the users, and movie 
+lists created by users.
+One main goal for our project is to have a less cluttered and simplified design for users to look at while finding movie recommendations. Fresh 
+Potatoes would solve this problem by including features that allow users to add directors, actors, etc. to recommend movies and shows based on those 
+criteria. Another feature will be filtering movies and shows based on what streaming platforms they could be found on. Features such as allowing users 
+to add movies or shows that they would like to watch later will be included. Users will also be able to like and dislike movies and shows to establish 
+a user rating for others to see.
