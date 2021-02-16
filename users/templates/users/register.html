@@ -1,0 +1,45 @@
+{% extends "homepage/base.html" %}
+{% block content %}
+    <div class="align-middle">
+        <center>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend>Join Today</legend>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="usernameInput">Username</label>
+                                    <input type="email" class="form-control" id="usernameInput" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordInput">Password</label>
+                                    <input type="password" class="form-control" id="passwordInput" aria-describedby="passwordHelp" placeholder="Password">
+                                    <small id="passwordHelp" class="form-text text-muted">Enter conditions.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordConfirmInput">Confirm Password</label>
+                                    <input type="password" class="form-control" id="passwordInput" aria-describedby="passwordHelp" placeholder="Password">
+                                    <small id="passwordHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dobInput">Date of Birth</label>
+                                    <input class="form-control" type="date" value="2000-01-01" id="dobInput">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div>
+                <small class="text-muted">
+                    Already have an account? <a class="ml-2" href="#">Log In</a>
+                </small>
+            </div>
+        </center>
+    </div>
+{% endblock %}
