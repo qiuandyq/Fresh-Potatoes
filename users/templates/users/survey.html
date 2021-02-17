@@ -4,31 +4,24 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-auto" style="padding: 1rem">
-                <legend>Join Fresh Potatos Today for instant movie recommendations!</legend> 
+                <legend>Let us know a little bit about yourself!</legend> 
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="card" style="width: 30rem; padding: 1rem">
                         <div class="card-body">
-                            {{ form|crispy }}
+                            {{ p_form|crispy }}
                         </div>
                         <center>
                             <div class="form-group">
-                                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                                <button class="btn btn-outline-info" type="submit">Continue</button>
                             </div>     
                         </center>
                     </div>
                 </form>    
-            </div>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto" style="padding: 1rem">
-                <small class="text-muted">
-                    Already have an account? <a class="ml-2" href="#">Log In</a>
-                </small>   
             </div>
         </div>
     </div>
