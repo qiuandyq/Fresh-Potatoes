@@ -1,7 +1,7 @@
 import json
 import requests
 
-api_key="0cda82335e834f31bcbc8a847a151fe5"
+api_key = "0cda82335e834f31bcbc8a847a151fe5"
 url_base = "https://api.themoviedb.org/3"
 
 # get details of movies or tv shows
@@ -28,8 +28,8 @@ def get_details(media_type, id):
 # param1: string, type of media ('all', 'movie', 'tv', 'person')
 # param2: string,  time window ('day', 'week')
 # return: JSON list of trending movies or tv shows
-def get_trending(media_type, time_window):
-    response = requests.get(f"{url_base}/trending/{media_type}/{time_window}?api_key={api_key}")
+def get_trending(media_type, time_window, page=1):
+    response = requests.get(f"{url_base}/trending/{media_type}/{time_window}?api_key={api_key}&page={page}")
 
     # check API request status code
     if response.status_code != 200:
@@ -43,13 +43,14 @@ def get_trending(media_type, time_window):
         if result['media_type'] == 'tv':
             result['title'] = result.pop('name')
 
-    return trending
+    return trending['results']
 
 # get list of popular movies or tv shows
-# param1: string, type of media ('movie', 'tv')
+# param: string, type of media ('movie', 'tv')
+# optional param: page (pass as 'page=#', default=1)
 # return: JSON list of popular movies or tv shows
-def get_popular(media_type):
-    response = requests.get(f"{url_base}/{media_type}/popular?api_key={api_key}")
+def get_popular(media_type, page=1):
+    response = requests.get(f"{url_base}/{media_type}/popular?api_key={api_key}&page={page}")
 
     # check API request status code
     if response.status_code != 200:
@@ -63,21 +64,23 @@ def get_popular(media_type):
         for result in popular['results']:
             result['title'] = result.pop('name')
 
-    return popular
+    return popular['results']
 
 # get list of upcoming movies (only for movies)
+# optional param: page (pass as 'page=#', default=1)
 # return: JSON list of upcoming movies
-def get_upcoming():
-    response = requests.get(f"{url_base}/movie/upcoming?api_key={api_key}")
+def get_upcoming(page=1):
+    response = requests.get(f"{url_base}/movie/upcoming?api_key={api_key}&page={page}")
 
     # check API request status code
     if response.status_code != 200:
         print(f"error: request error code {response.status_code}")
         return response.status_code
 
+    # get results from API
     upcoming = response.json()
-
-    return upcoming
+    
+    return upcoming['results']
 
 # get all genres associated with movie or tv show
 # param1: string, type of media (either 'tv' or 'movie')
