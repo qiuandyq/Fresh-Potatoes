@@ -18,6 +18,9 @@ def get_details(media_type, id):
 
     details = response.json()
 
+    details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
+    details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
+
     # rename 'name' key to 'title'
     if media_type == 'tv':
         details['title'] = details.pop('name')
@@ -38,12 +41,14 @@ def get_trending(media_type, time_window, page=1):
 
     trending = response.json()
     
+    # replace with full url path
+    update_urls(trending['results'])
     # rename 'name' key to 'title'
     for result in trending['results']:
         if result['media_type'] == 'tv':
             result['title'] = result.pop('name')
 
-    return trending['results']
+    return trending
 
 # get list of popular movies or tv shows
 # param: string, type of media ('movie', 'tv')
@@ -59,12 +64,14 @@ def get_popular(media_type, page=1):
 
     popular = response.json()
 
+    # replace with full url path
+    update_urls(popular['results'])
     # rename 'name' key to 'title'
     if (media_type == 'tv'):
         for result in popular['results']:
             result['title'] = result.pop('name')
 
-    return popular['results']
+    return popular
 
 # get list of upcoming movies (only for movies)
 # optional param: page (pass as 'page=#', default=1)
@@ -80,7 +87,10 @@ def get_upcoming(page=1):
     # get results from API
     upcoming = response.json()
     
-    return upcoming['results']
+    # replace with full url path
+    update_urls(upcoming['results'])
+
+    return upcoming
 
 # get all genres associated with movie or tv show
 # param1: string, type of media (either 'tv' or 'movie')
@@ -118,23 +128,13 @@ def search_movie_id(movie_title):
  
   return id_dict
 
-#param1: string, the movie titles
-#return: JSON, list of movies matching search title
-# def search_movie(movie_title):
-#   url_title = movie_title.replace(" ","%20")
-#   print(url_title)
-#   response = requests.get(f"{url_base}/search/movie?api_key={api_key}&query={url_title}")
-#   search_result = response.json()
-  
-#   # for result in search_result['results']:
-#     # if search_result['title'] != movie_title:
-#     #   search_result.pop(result)
-#   #   print(search_result[result])
 
-#   print(search_result)
-  
 
-# print(get_genre('movie',458576))
-print(search_movie_id("Avengers"))
-print(get_details('movie', 299534))
-# search_movie("Monster Hunter")
+"""
+HELPER FUNCTIONS
+"""
+
+def update_urls(results):
+    for item in results:
+        item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
+        item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
