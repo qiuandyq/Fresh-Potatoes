@@ -1,3 +1,5 @@
+#SETTINGS.PY
+
 """
 Django settings for Fresh_Potatos project.
 
@@ -120,3 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL= 'home' #takes user to homepage after logging in
+LOGIN_URL ='login' # takes user to login page if they try to go to the profile page aren't logged in
