@@ -1,4 +1,4 @@
-"""Fresh_Potatos URL Configuration
+"""fresh-potatos URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('homepage.urls'))
+    path('register/', user_views.register, name="register"),
+    path('profile/', user_views.profile, name="profile"),
+    path('survey/', user_views.survey, name="survey"),
+    path('', include('homepage.urls')),
 ]
