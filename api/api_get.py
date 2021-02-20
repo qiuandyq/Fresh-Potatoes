@@ -106,12 +106,12 @@ def get_genre(media_type, id):
 
     genres = response.json()
 
-    if (media_type == 'tv'):
-        genres['title'] = genres.pop('name')
+    # if (media_type == 'tv'):
+    #     genres['title'] = genres.pop('name')
 
     return genres
 
-
+#search for a movie in the API and give back all related searches and their id's
 #param1: string, the movie titles
 #return: JSON, list of movies matching search title
 def search_movie_id(movie_title):
@@ -128,7 +128,30 @@ def search_movie_id(movie_title):
  
   return id_dict
 
+#search for a tv in the API and give back all related searches and their id's
+#param1: string, the titles
+#return: JSON, list of movies matching search title
+def search_tv_id(title):
+  url_title = title.replace(" ","%20")
+  print(url_title)
+  response = requests.get(f"{url_base}/search/tv?api_key={api_key}&query={url_title}")
+  search_result = response.json()
 
+  id_dict = {}
+  result_num = 0
+  for result in search_result['results']:
+    result_num += 1
+    id_dict[result['name']+" id"] = result["id"]
+ 
+  return id_dict
+
+
+#get the movie/tv poster and other images given the movie/tv id
+def get_images(media_type, id):
+    response = requests.get(f"{url_base}/{media_type}/{id}/images?api_key={api_key}")
+    result = response.json()
+
+    return result
 
 """
 HELPER FUNCTIONS
@@ -138,3 +161,7 @@ def update_urls(results):
     for item in results:
         item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
         item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
+
+
+
+
