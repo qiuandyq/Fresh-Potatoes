@@ -136,3 +136,4 @@ EMAIL_PORT= 587  # the port connects the mail client to the SMTP server (the sen
 EMAIL_USE_TLS= True
 EMAIL_HOST_USER= 'freshpotatosreset@gmail.com'
 EMAIL_HOST_PASSWORD= 'hlbcxfaofughmdig'
+
