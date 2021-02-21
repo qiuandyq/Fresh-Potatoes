@@ -43,13 +43,13 @@
                 <div class= "row justify-content-md-center">
             <!-- REGISTER LINK-->
                     <small class= "text-muted">
-                        Don't have an Account Already? <a class= "ml-2" href= "{% url "register" %}"> Register Today!</a>
+                        Don't have an Account Already? <a class= "ml-2" href= "{% url 'register' %}"> Register Today!</a>
                     </small>
                 </div>
                 <div class= "row justify-content-md-center">
             <!-- FORGOT PASSWORD LINK-->
                     <small class= "text-muted">
-                        Forgot your Password? <a class="ml-2" href= "#"> Reset Password</a>
+                        Forgot your Password? <a class="ml-2" href= "{% url 'password_reset' %}"> Reset Password</a>
                     </small>
                 </div>
             </div> <!-- End of card-body-->
