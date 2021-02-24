@@ -1,5 +1,31 @@
 # Fresh Potatoes
 
+## Dependencies
+
+Install dependencies with `requirements.txt`
+
+```
+pip install -r requirements.txt
+```
+
+Alternatively,
+
+```
+pip install django django-crispy-forms requests
+```
+
+## Instructions
+
+```
+git clone https://csil-git1.cs.surrey.sfu.ca/fresh-potatoes/fresh-potatoes.git
+cd fresh-potatoes
+python manage.py runserver
+```
+
+## Overview
+
+![Demonstration Video](src/demo.mp4)
+
 Fresh potatoes provides a simplified and more efficient movie searching process for any users that watches movies and TV shows at any age range. Though the recommendation option has been implemented on most of the streaming services, many users still feel lost while searching for something new to watch due to the limited content and overly complicated designs on most of the modern streaming services and databases such as Netflix and IMDb. Our project aims to solve that problem by implementing more defined and detailed recommendation options as well as filtering the movies and shows based on the streaming platforms they are on and provide a link to that platform. 
 
 The main overarching features of this project consist of filter features, recommendations, as well as search functions. Some of our features can be classified as both filter features and recommendation features such as the search filter that can be used when searching the website for movies. 
