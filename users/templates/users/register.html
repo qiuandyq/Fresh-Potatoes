@@ -1,10 +1,11 @@
 {% extends "homepage/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
+<div id="content-wrap">
+    <div class="container movie-details">
         <div class="row justify-content-md-center">
             <div class="col-md-auto" style="padding: 1rem">
-                <legend>Join Fresh Potatos Today for instant movie recommendations!</legend> 
+                <legend style="color: white">Join Fresh Potatos Today for instant movie recommendations!</legend> 
             </div>
         </div>
         <div class="row justify-content-md-center">
@@ -27,9 +28,10 @@
         <div class="row justify-content-md-center">
             <div class="col-md-auto" style="padding: 1rem">
                 <small class="text-muted">
-                    Already have an account? <a class="ml-2" href="{% url 'login' %}">Log In</a>
+                    <span style="color: white">Already have an account? </span> <a class="ml-2" href="{% url 'login' %}">Log In</a>
                 </small>   
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
