@@ -2,6 +2,8 @@
 
 ## Dependencies
 
+***Python 3.6** or newer is required
+
 Install dependencies with `requirements.txt`
 
 ```
@@ -21,6 +23,8 @@ git clone https://csil-git1.cs.surrey.sfu.ca/fresh-potatoes/fresh-potatoes.git
 cd fresh-potatoes
 python manage.py runserver
 ```
+
+Webpage can be accessed on the browser at [127.0.0.1:8000](127.0.0.1:8000/) while the web server is running.
 
 ## Overview
 
