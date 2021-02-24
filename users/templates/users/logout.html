@@ -2,26 +2,25 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class= 'container'>
-
-    <div class= 'row justify-content-md-center'>
-        <div class= 'col-md-auto'>
-            
-            <Legend > You Have Been Logged Out. </Legend >
-                <div class= "row justify-content-md-center">
-
-                    <small> We hope your potatos were fresh! </small>
-
-                </div>
-                <div class= "row justify-content-md-center">
-                    <small>Come back soon :)</small>
-                </div>
-
-        </div>
-    </div>
-    <div class= 'border-top pt-3'> <!-- adds a line/border at the top of this div/section-->
+<div id="content-wrap">
+    <div class="container movie-details">
         <div class= 'row justify-content-md-center'>
-            <div class= 'col-md-auto'>
+            <div class= 'col-md-auto' style="color: white">
+                
+                <h1> You Have Been Logged Out. </h1>
+                    <div class= "row justify-content-md-center mt-5">
+
+                        <small> We hope your potatos were fresh! </small>
+
+                    </div>
+                    <div class= "row justify-content-md-center">
+                        <small>Come back soon :)</small>
+                    </div>
+
+            </div>
+        </div>
+        <div class= 'row justify-content-md-center'>
+            <div class= 'col-md-auto mt-5'>
                 
                 <small>
                     <a href= "{% url 'login' %}">Log Back In</a>
