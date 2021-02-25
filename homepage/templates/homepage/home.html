@@ -1,8 +1,119 @@
 {% extends "homepage/base.html" %}
-{% block content %}
-    {% for post in posts %}
-        <div>
+{% load static %}
 
+{% block content %}
+
+    <!--featured movies and background-->
+    <div id="content-wrap">
+        <div class="container movie-details">
+            <div class="row">
+                <div class="col-md-6 left-box">
+                    <h1>{{popular_movie19.title}}</h1>
+                    <p>{{popular_movie19.overview}}</p>
+                    <a href="#" class="watch-btn"><i class="fa fa-info" aria-hidden="true"></i>More Info</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <img src="{{popular_movie19.poster_path}}" class="movie-img"> 
+                </div>
+            </div>
         </div>
-    {% endfor %}
-{% endblock content %}
+        <div>
+            <!--First row of movies-->
+            <div class="container series">
+                <h3>Popular Movies</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie1.poster_path}}"><h5>{{popular_movie1.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie2.poster_path}}"><h5>{{popular_movie2.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie3.poster_path}}"><h5>{{popular_movie3.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie4.poster_path}}"><h5>{{popular_movie4.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie5.poster_path}}"><h5>{{popular_movie5.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{popular_movie6.poster_path}}"><h5>{{popular_movie6.title}} </h5></div></a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+
+            <!--Second row of movies-->
+            <div class="container series">
+                <h3>Trending</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie1.poster_path}}"><h5>{{trending_movie1.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie2.poster_path}}"><h5>{{trending_movie2.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie3.poster_path}}"><h5>{{trending_movie3.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie4.poster_path}}"><h5>{{trending_movie4.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie5.poster_path}}"><h5>{{trending_movie5.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{trending_movie6.poster_path}}"><h5>{{trending_movie6.title}} </h5></div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Third row of movies-->
+            <div class="container series">
+                <h3>Upcoming</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie1.poster_path}}"><h5>{{upcoming_movie1.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie2.poster_path}}"><h5>{{upcoming_movie2.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie3.poster_path}}"><h5>{{upcoming_movie3.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie4.poster_path}}"><h5>{{upcoming_movie4.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie5.poster_path}}"><h5>{{upcoming_movie5.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href=""><img src="{{upcoming_movie6.poster_path}}"><h5>{{upcoming_movie6.title}} </h5></div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

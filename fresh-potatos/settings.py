@@ -1,3 +1,5 @@
+#SETTINGS.PY
+
 """
 Django settings for fresh-potatos project.
 
@@ -11,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,3 +125,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL= 'home' #takes user to homepage after logging in
+LOGIN_URL ='login' # takes user to login page if they try to go to the profile page aren't logged in
+
+
+# host email that sends reset password link (might refactor later)
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend' # "SMTP" stands for Simple Mail Transfer Protocol
+EMAIL_HOST= 'smtp.gmail.com' # this is the SMTP address for Gmail
+EMAIL_PORT= 587  # the port connects the mail client to the SMTP server (the sending port is 25 nomatter what)
+EMAIL_USE_TLS= True
+EMAIL_HOST_USER= 'freshpotatosreset@gmail.com'
+EMAIL_HOST_PASSWORD= 'hlbcxfaofughmdig'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
