@@ -42,23 +42,30 @@ Clicking the forgot password button sends an email link to the customer’s emai
 
 
 - Recommendation system:
+
 The recommendation system will be an account specific system. It will allow the user to enter their own preferences and recommend entertainment to them based on those preferences. Once a user is logged in, their home screen will display personalized movies to their liking.
 
 - More inputs for survey to show recommendations accurately
+
 In future iterations we hope to improve upon the recommendation feature by fleshing out the registration survey. We also want to track what the user likes and doesn’t like to try and incorporate these things into the recommendation algorithm as well.
 
-- Individual movie pages 
+- Individual movie pages
+
 Individual movie pages display more details for the selected movie, including the release date, genre, rating, story overview, link to watch the movie and many more. 
 
-- Registered user homepage 
+- Registered user homepage
+
 This is the homepage that will display customized content based on the users preferences.
 
 - About page
+
 This will be a page in which we describe our team and how we have completed the project.
 
 - Search feature
+
 This will be a typical search feature. It will allow the user to search for entertainment and give recommendations based on what they searched. The user will be able to navigate from the search page to any individual movie page.
 
 - Rating System
+
 This will be a system where a user can leave a rating out of 10 on a movie/show and have it contribute to an aggregate rating that is kept on the site.
 
