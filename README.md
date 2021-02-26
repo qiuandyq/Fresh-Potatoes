@@ -4,6 +4,8 @@
 
 ***Python 3.6** or newer is required
 
+*API  from [The Movie Database](https://developers.themoviedb.org/3/)
+
 Install dependencies with `requirements.txt`
 
 ```
