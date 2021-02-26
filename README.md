@@ -63,4 +63,4 @@ This will be a system where a user can leave a rating out of 10 on a movie/show 
 
 ## Trello Board
 
-<img src="src/trelloboard.jpg"  width="200">
+<img src="src/trelloboard.jpg"  width="400">
