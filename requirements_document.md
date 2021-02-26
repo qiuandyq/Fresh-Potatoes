@@ -42,6 +42,7 @@ Captain Hook goes to the Fresh Potatos website and is brought to the homepage wh
 **Postcondition**:  their account contains their date of birth information
 
 **Iteration**: 1 
+
 **Scenario**: 
 
 Tony Stark goes to the Fresh Potatoes website and clicks on the “login” button located in the top right corner of the website. He is then taken to the homepage. He clicks the “profile” button located in the top right corner which takes him to his profile page. Clicking the “Complete our survey to get recommended movies!” link he enters his birthdate which is now displayed on his profile page.
