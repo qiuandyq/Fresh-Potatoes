@@ -5,11 +5,17 @@ Fresh potatoes provides a simplified and more efficient movie searching process 
 ### User Stories 1
 
 **User story**: As a New movie watcher I want to sign up to get access to a profile
+
 **Name**: Captain Hook
+
 **Actors**: New movie watcher
+
 **Precondition**: none
+
 **Postcondition**: The user’s account information will be stored in the database.
+
 **Iteration**: 1
+
 **Scenario**:
 
 Captain Hook goes to the Fresh Potatos website and is brought to the homepage where he can see a main featured movie. He clicks on the login button that can be found in the righthand corner of the website’s navigation bar. He is then brought to a register page where he adds his username, password, password confirmation, and email. He hits “Sign Up” and is redirected to the login page. He logs in with his new username and password and clicks on the profile button in the top right of the website. Here he is shown his email, username and can input his date of birth.
@@ -26,10 +32,15 @@ Captain Hook goes to the Fresh Potatos website and is brought to the homepage wh
 ### User Stories 2
 
 **User story**: As a regular movie watcher I want to log in to my profile to add my date of birth
+
 **Name**: Tony Stark  
+
 **Actors**: Regular movie watcher 
+
 **Precondition**: already registered for a Fresh Potatoes account
+
 **Postcondition**:  their account contains their date of birth information
+
 **Iteration**: 1 
 **Scenario**: 
 
@@ -44,11 +55,17 @@ Tony Stark goes to the Fresh Potatoes website and clicks on the “login” butt
 ### User Stories 3
 
 **User story**: As a movie buff I want to see what movies are popular, trending, and coming out to keep up to date.
+
 **Name**: James Bond 
+
 **Actors**: Movie Buff 
+
 **Precondition**: none
+
 **Postcondition**: none 
+
 **Iteration**: 1
+
 **Scenario**:
 
 James Bond wants to know what some popular, trending, and upcoming movies are. So he goes to the fresh potatoes website and scrolls down to check what movies are new, trendy and coming soon.
