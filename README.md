@@ -56,3 +56,6 @@ During the user’s initial signup we establish a basis for how movies should be
 - Rating System
     - This will be a system where a user can leave a rating out of 10 on a movie/show and have it contribute to an aggregate rating that is kept on the site.
 
+## Trello Board
+
+![Trello board of project](trelloboard.jpg)
