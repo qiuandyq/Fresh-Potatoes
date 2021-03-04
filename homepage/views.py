@@ -38,3 +38,6 @@ def homepage(request):
 
 def about(request):
     return render(request, 'homepage/base.html')
+
+def faq(request):
+    return render(request, 'homepage/faq.html')
