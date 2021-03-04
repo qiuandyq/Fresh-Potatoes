@@ -2,22 +2,36 @@
 {% load static %}
 {% block content %}
 
+
 <!-- <div class= "accordion"> -->
 
-<div class="col-md-auto" style="padding: 1rem">
+<div class="col-md-auto" > <!--style="padding: 1rem"-->
     <div class="row justify-content-md-center">
-        <div class= "card" style="width: 30rem; padding: 1rem;">
+        <div class= "card" style="width: 30rem; "> <!-- padding: 1rem; -->
             <div class = "card-header" >
                 <center>
                     <legend> Frequently Asked Questions:</legend> 
                 </center>
             </div> <!-- end of card header -->
-            <div class= "card-body">
-                <div class= "accordion">
-                        
+            <div class="accordion" id="FAQ">
+                <div class="card">
+                  <div class="card-header" id="question-1">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#answer-1" aria-expanded="true" aria-controls="collapseOne">
+                        Question 1
+                      </button>
+                    </h5>
+                  </div>
+              
+                  <div id="answer-1" class="collapse " aria-labelledby="question-1" data-parent="#FAQ"> <!-- if you want the section to be expanded initially give this a class of: class="collapse show" -->
+                    <div class="card-body">
+                      asdfasdfas
+                    </div>
+                  </div>
+                </div> <!-- end of question 1-->
+                
 
-                </div>
-            </div>
+            </div> <!-- end of accordian class -->
         </div>
     </div>
 </div> <!-- end row jusfity-->
