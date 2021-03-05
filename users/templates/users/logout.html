@@ -5,27 +5,32 @@
 <div id="content-wrap">
     <div class="container movie-details">
         <div class= 'row justify-content-md-center'>
-            <div class= 'col-md-auto' style="color: white">
+            <div class= 'col-md-auto'>
                 
-                <h1> You Have Been Logged Out. </h1>
-                    <div class= "row justify-content-md-center mt-5">
+                <h1 style= "color: white"> You Have Been Logged Out. </h1>
+                <div class= "card">
+                    <div class= "card-body">
 
-                        <small> We hope your potatos were fresh! </small>
-
+                        <div class= "row justify-content-md-center mt-auto">
+                            
+                            <small> We hope your potatos were fresh! </small>
+                            
+                        </div>  
+                        <div class= "row justify-content-md-center">
+                            <small>Come back soon :)</small>
+                        </div>
                     </div>
-                    <div class= "row justify-content-md-center">
-                        <small>Come back soon :)</small>
-                    </div>
+                </div>
 
             </div>
         </div>
         <div class= 'row justify-content-md-center'>
-            <div class= 'col-md-auto mt-5'>
+            <div class= 'col-md-auto mt-auto'>
                 
                 <small>
                     <a href= "{% url 'login' %}">Log Back In</a>
                 </small>
-
+                
             </div>
         </div>
     </div>
