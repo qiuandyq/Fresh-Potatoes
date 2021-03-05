@@ -6,14 +6,16 @@
 
 <!-- <div class= "accordion"> -->
 
-<div class="col-md-auto" > <!--style="padding: 1rem"-->
-    <div class="row justify-content-md-center">
+<div class="col-md-auto, container movie-details" style= "padding: rem;" > <!--style="padding: 1rem"-->
+  <div class= "row justify-content-md-center"> 
+    <div class="card-header">
+      <center>
+        <legend class="site-header" style="color: white"> Frequently Asked Questions:</legend> 
+      </center>
+    </div>
+  </div> <!-- end of card header -->
+  <div class="row justify-content-md-center">
         <div class= "card" style="width: 30rem;"> <!-- padding: 1em; -->
-            <div class = "card-header" >
-                <center>
-                    <legend class="site-header"> Frequently Asked Questions:</legend> 
-                </center>
-            </div> <!-- end of card header -->
             <div class="accordion" id="FAQ">
               {% for faq in faqs %} <!-- loops through and applies all faq questions to the accordian collaps on our /FAQ page -->
 
