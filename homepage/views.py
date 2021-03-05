@@ -38,3 +38,50 @@ def homepage(request):
 
 def about(request):
     return render(request, 'homepage/about.html')
+
+def faq(request):
+    faqs=[
+        {   
+            'quest_num': 'question-1',
+            'question': 'Q: Can I get a signed Fresh Potatoes poster?',
+            'ans_num': 'answer-1',
+            'answer': '''Unfortunately, we are out of stock of Fresh Potato posters at the moment. 
+                         However, we are more than happy to send you a signed potato 
+                        (your choice of sweet or regular) in the mail just for you!
+                        ''',
+            'target': '#answer-1' # this part must be the same as the 'ans_num' field with a # infront of it.
+        },
+        {
+            'quest_num': 'question-2',
+            'question': 'Q: Is it pronounced "po-tay-toe" or "po-tah-ta"?',
+            'ans_num': 'answer-2',
+            'answer': '''
+                    Potato, potahto, tomato, tomahto.
+                    Let's call the whole thing off.
+                        ''',
+            'target': '#answer-2'
+        },
+        {
+            'quest_num': 'question-3',
+            'question': 'Q: Why did you pick the name "Fresh Potatoes"?',
+            'ans_num': 'answer-3',
+            'answer': ''' Because we thought the name was SPUDtacular as we found it very aPEELing.
+                        ''',
+            'target': '#answer-3'
+        },
+        {
+            'quest_num': 'question-4',
+            'question': 'Q: What do you call a lazy baby kangaroo?',
+            'ans_num': 'answer-4',
+            'answer': ''' A POUCH-potato.
+                        ''',
+            'target': '#answer-4'
+        }
+    ] #end of faq dictionary
+
+    context= {
+
+        'faqs':faqs # we can use 'faqs' as a variable in our faq.html file now
+    }
+
+    return render(request, 'homepage/faq.html', context)
