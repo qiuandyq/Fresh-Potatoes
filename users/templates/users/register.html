@@ -1,0 +1,37 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="content-wrap">
+    <div class="container movie-details">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="padding: 1rem">
+                <legend style="color: white">Join Fresh Potatos Today for instant movie recommendations!</legend> 
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="card" style="width: 30rem; padding: 1rem">
+                        <div class="card-body">
+                            {{ form|crispy }}
+                        </div>
+                        <center>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                            </div>     
+                        </center>
+                    </div>
+                </form>    
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="padding: 1rem">
+                <small class="text-muted">
+                    <span style="color: white">Already have an account? </span> <a class="ml-2" href="{% url 'login' %}">Log In</a>
+                </small>   
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

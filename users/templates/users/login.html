@@ -1,0 +1,65 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %} <!-- load in crispy form tags-->
+
+{% block content %}
+<div id="content-wrap">
+    <div class="container movie-details">
+
+        <div class= "row justify-content-md-center" style="width: 100%; height: 100%; overflow: hidden"> <!-- moves text to center-->
+            <div class= "card">
+                
+
+                <div class= "card-body" style= "width: 30rem; padding: 1rem"> <!-- "card" class puts the fields in a "box"/card.  "width" increases card"s  with--> 
+
+                    <div class= "container">
+                            
+                        <form method= "POST">
+                <!-- LOGIN FIELDS-->
+                            {% csrf_token %}  <!--  YOU MUST HAVE THIS OR IT WONT WORK! It stands for "cross site request forgery " token -- this protects form againts certian attacks-->
+                    
+                                
+                            <fieldset class= "form-group">
+                                <div class= "row justify-content-md-center">
+                                        
+
+                                    <center>
+                                        <legend>  Login to your Fresh Potatos Account: </legend>
+                                    </center> 
+                                        
+                                    {{ form|crispy }} <!-- contains username and password field.  "|" spesifys we want to user a filter-->
+                                        
+                                </div> <!-- end legend justify-->
+                                        
+                            </fieldset>
+
+                <!-- BUTTON -->
+                            <div class= "row justify-content-md-center">
+
+                                <div class= form-group>
+                                    <button class= "btn btn-outline-info" type="submit"> Login</button>
+                                </div>
+                            </div> <!-- end buttin jusfity-->
+                        </form>
+                    </div> <!-- end of container-->
+                    <div class= "row justify-content-md-center">
+                <!-- REGISTER LINK-->
+                        <small class= "text-muted">
+                            Don't have an Account Already? <a class= "ml-2" href= "{% url 'register' %}"> Register Today!</a>
+                        </small>
+                    </div>
+                    <div class= "row justify-content-md-center">
+                <!-- FORGOT PASSWORD LINK-->
+                        <small class= "text-muted">
+                            Forgot your Password? <a class="ml-2" href= "{% url 'password_reset' %}"> Reset Password</a>
+                        </small>
+                    </div>
+                </div> <!-- End of card-body-->
+            </div> <!-- End of Card div -->
+        </div>
+    </div>
+</div>
+        
+
+    
+    
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="padding: 1rem">
+                <legend style="color: white">Let us know a little bit about yourself!</legend> 
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card" style="width: 30rem; padding: 1rem">
+                        <div class="card-body">
+                            {{ p_form|crispy }}
+                        </div>
+                        <center>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Continue</button>
+                            </div>     
+                        </center>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+{% endblock %}

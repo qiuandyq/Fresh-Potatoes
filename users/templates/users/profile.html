@@ -1,0 +1,38 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div id="content-wrap">
+        <div class="container movie-details">
+            <div class="card" style="padding: 1rem">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm mb-5">
+                            <h1>{{ user.username }}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            Email: <h3>{{ user.email }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            Date of Birth: <h3>{{ user.profile.dob }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            Movie Preferences: <h3>None</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            <a href="{% url 'survey' %}">Complete our survey to get recommended movies! </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}
