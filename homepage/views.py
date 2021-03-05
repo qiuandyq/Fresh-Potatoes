@@ -37,4 +37,4 @@ def homepage(request):
     return render(request, 'homepage/home.html', context)
 
 def about(request):
-    return render(request, 'homepage/base.html')
+    return render(request, 'homepage/about.html')
