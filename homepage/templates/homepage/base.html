@@ -19,8 +19,9 @@
         <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="logo"></a>
         <b class="site-name mt-3"><a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">Fresh Potatoes</a></b>
             <!--search bar-->
-            <form class="header-btn search-bar" action="{% url 'search' %}" method="get">
+            <form class="header-btn search-bar" id="search-bar" action="{% url 'search' %}" method="get">
                 <input name="q" type="text" placeholder="Search...">
+                <button type="submit" form="search-bar" class="search-bar-button"><img src="{% static 'img/search-button.png' %}"></button>
             </form>
         <!--if user is authenticated, show logout and profile, else show login and register-->
             {% if user.is_authenticated %}

@@ -33,6 +33,7 @@
 <div id="search-wrapper" class="container">
     <h1>Search Results</h1>
 
+    <!--buttons to filter movies or tv shows-->
     <button type="button" onclick="showMovies()" class="search-toggle search-toggle-selected" id="movie-toggle">Movies</button>
     <button type="button" onclick="showTV()" class="search-toggle" id="tv-toggle">TV Shows</button>
 
@@ -55,6 +56,8 @@
             {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
             </div>
             {% endif %}
+
+            <!--if last closing div statements arent printed, then print-->
             {% if forloop.last and not forloop.counter|divisibleby:2 %}
                 </div>
             </div>
@@ -86,6 +89,8 @@
             {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
             </div>
             {% endif %}
+
+            <!--if last closing div statements arent printed, then print-->
             {% if forloop.last and not forloop.counter|divisibleby:2 %}
                 </div>
             </div>
