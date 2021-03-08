@@ -4,11 +4,21 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
+from .forms import SearchForm
 
 # Create your views here.
 def homepage(request):
     counter = 0
-    context = {}
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            print(title)
+
+            
+    form = SearchForm()
+
+    context = {'form':form}
     for item in api.get_trending('movie', 'week')['results']:
         context[f'trending_movie{counter}'] = {
             "title": item['title'],

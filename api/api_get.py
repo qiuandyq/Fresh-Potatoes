@@ -22,8 +22,7 @@ def get_details(media_type, id):
     details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
 
     # rename 'name' key to 'title'
-    if media_type == 'tv':
-        details['title'] = details.pop('name')
+
 
     return details
 
@@ -164,4 +163,4 @@ def update_urls(results):
 
 
 
-
+print(get_upcoming(1))
