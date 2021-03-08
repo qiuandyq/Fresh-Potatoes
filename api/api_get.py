@@ -121,10 +121,16 @@ def search_movie_id(movie_title):
   search_result = response.json()
 
   id_dict = {}
+  id_dict['results'] = []
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['title']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['title'],
+            "id": result["id"]
+        }
+    )
  
   return id_dict
 
@@ -138,10 +144,18 @@ def search_tv_id(title):
   search_result = response.json()
 
   id_dict = {}
+  
+  
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['name']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['name'],
+            "id": result["id"]
+        }
+    )
+    #id_dict[result['name']+" id"] = result["id"]
  
   return id_dict
 

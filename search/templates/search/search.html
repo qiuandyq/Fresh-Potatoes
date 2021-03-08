@@ -1,0 +1,15 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+
+<div style="color:white">
+    <h1>Search Results</h1>
+
+    <ul>
+    {% for item in results %}
+        <li>{{ item.title }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}
