@@ -12,11 +12,13 @@ def search(request):
     if query != "":
         # fill results in categories
         context = {
+            "query": query,
             "movie_results": api.search_movie_id(query)['results'],
             "tv_results": api.search_tv_id(query)['results']
         }
     else :
         context = {
+            "query": query,
             "movie_results": {},
             "tv_results": {}
         }
