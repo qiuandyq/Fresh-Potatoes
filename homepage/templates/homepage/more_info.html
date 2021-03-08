@@ -2,28 +2,29 @@
 {% load static %}
 {% block content %}
 
-<h1 style= "color: white;">More info on {{ title }}</h1>
 
-
-<div class="container movie-details">
-    <div class="row">
-        <div class="col-md-6 left-box" style="padding-bottom: 1rem;">
-            <h1>Overview:</h1>
-            <p>{{overview}}</p>
-            
-        </div>
-        <div class="col-md-6 text-right">
-            <img src="{{poster_path}}" class="movie-img"> 
-            <br>
-            <h4 style="color:grey;">Release Date:</h4>
-            <h6 style="color: grey;"> {{release_date}} </h6>
-            <h4 style="color: white;">Runtime:</h4>
-            <h6 style="color: white;"> {{runtime}} minutes</h6>
-            <h4 style="color: grey;">Status:</h4>
-            <h6 style="color: grey"> {{status}} </h6>
-            
+<div id="content-wrap">
+    <div class="container movie-detailed-view">
+        <div class="row">
+            <div class="col-md-6 left-box">
+                <h1>{{title}}</h1>
+                <h4 style="color:white;"><i class="fa fa-calendar" aria-hidden="true"></i>{{release_date}}</h4>
+                <h4 style="color: white;"><i class="fa fa-hourglass-half" aria-hidden="true"></i>{{runtime}} minutes</h4>
+                <h4 style="color: white;"><i class="fa fa-info-circle" aria-hidden="true"></i>{{status}} </h4>
+                <a href="{{info_url}}/{{popular_movie19.id}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Watch Trailer</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="{{poster_path}}" class="movie-img"> 
+            </div>
         </div>
     </div>
+    <div>
+    <!-- Movie Overview -->
+    <div class="container movie-details-overview">
+        <h3>Overview:</h3>
+        <p>{{overview}}</p>
+    </div>
 </div>
+
 
 {% endblock %}

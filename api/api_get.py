@@ -79,6 +79,7 @@ def get_popular(media_type, page=1):
 def get_upcoming(page=1):
     response = requests.get(f"{url_base}/movie/upcoming?api_key={api_key}&page={page}")
 
+
     # check API request status code
     if response.status_code != 200:
         print(f"error: request error code {response.status_code}")
