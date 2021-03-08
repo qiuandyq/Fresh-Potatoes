@@ -12,12 +12,7 @@
 <body>
     
     <!--header-->
-    {% csrf_token %}
-    <form method= "post">
-        {{ form }}
-        <button type= "submit">Submit</button> 
 
-    </form>
    
     <div class="container header">
         <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="logo"></a>
