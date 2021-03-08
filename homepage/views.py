@@ -7,33 +7,45 @@ import api.api_get as api
 
 # Create your views here.
 def homepage(request):
-    counter = 0
-    context = {}
+    counter = 1
+    context = {
+
+        "info_url": 'more_info' # *** if you change this: make sure the right side 
+                                        # to match the first part of the more_info path in urls.py 
+
+    }
     for item in api.get_trending('movie', 'week')['results']:
         context[f'trending_movie{counter}'] = {
             "title": item['title'],
             "overview": item['overview'],
-            "poster_path": item['poster_path'] 
+            "poster_path": item['poster_path'], 
+            "id": item['id'], # get the movie's id so we can use it in our href later
         }
         counter = counter + 1
 
-    counter = 0
+    counter = 1
     for item in api.get_popular('movie')['results']:
         context[f'popular_movie{counter}'] = {
             "title": item['title'],
             "overview": item['overview'],
-            "poster_path": item['poster_path'] 
+            "poster_path": item['poster_path'],
+            "id": item['id'],
         }
         counter = counter + 1
 
-    counter = 0
+    counter = 1
     for item in api.get_upcoming()['results']:
-        context[f'upcoming_movie{counter}'] = {
-            "title": item['title'],
-            "overview": item['overview'],
-            "poster_path": item['poster_path'] 
-        }
-        counter = counter + 1
+        
+        if (api.get_details('movie', int (item['id']))['status']!='Released'): #checks to see if movie has been released 
+            context[f'upcoming_movie{counter}'] = {
+                "title": item['title'],
+                "overview": item['overview'],
+                "poster_path": item['poster_path'],
+                "id": item['id'], 
+                
+            }
+            counter = counter + 1
+
     return render(request, 'homepage/home.html', context)
 
 def about(request):
@@ -85,3 +97,21 @@ def faq(request):
     }
 
     return render(request, 'homepage/faq.html', context)
+
+def more_info(request, movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
+  
+    item = api.get_details('movie', int(movie_id))
+    
+
+    context = {
+        
+        "title": item['title'],
+        "overview": item['overview'],
+        "poster_path": item['poster_path'], 
+        "release_date": item['release_date'],
+        "runtime": item['runtime'],
+        "status":item['status']
+    }
+    
+
+    return render(request, 'homepage/more_info.html', context )
