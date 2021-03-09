@@ -210,8 +210,5 @@ def get_provider(media_type, id):
     if media_type == 'tv':
         trailer['title'] = trailer.pop('name')
 
-<<<<<<< HEAD
-=======
     return trailer
 
->>>>>>> b76dabd874c20b0c32d8e12cd9ad7b63f110eab9

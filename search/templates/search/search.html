@@ -31,9 +31,15 @@
 
 {% block content %}
 
+    <div id="wide-search-wrapper" class="container">
+    <form class="header-btn wide-search-bar" id="wide-search-bar" action="{% url 'search' %}" method="get">
+        <input name="q" type="text" placeholder="Search..." id = "search-look">
+        <button type="submit" form="wide-search-bar" class="wide-search-bar-button"><img src="{% static 'img/search--v2.png' %}"></button>
+    </form>
+    </div>
     <div id="search-wrapper" class="container">
 
-
+    
     <!--buttons to filter movies or tv shows-->
     <button type="button" onclick="showMovies()" class="search-toggle search-toggle-selected" id="movie-toggle">Movies</button>
     <button type="button" onclick="showTV()" class="search-toggle" id="tv-toggle">TV Shows</button>

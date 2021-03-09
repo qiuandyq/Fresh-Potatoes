@@ -2,7 +2,7 @@
     color: white;
     text-align: center;
     padding-bottom: 150px;
-    margin-top: 90px;
+    margin-top: 140px;
 }
 
 #search-wrapper h1 {
@@ -48,7 +48,42 @@
     -webkit-hyphens: auto;
     hyphens: auto;
 }
+/*wide search bar*/
+.wide-search-bar {
+    background-color:#107afd;
+    border: 5px;
+    margin-right: 360px;
+    margin-top: 80px;
+    width: 400px;
+    
+}
 
+.wide-search-bar input {
+    background-color: #0c51a600;
+    color: white;
+    outline: 0 !important;
+    border: none;
+    width: 300px;
+}
+
+.wide-search-bar input::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.wide-search-bar-button {
+    background:#0c51a600;
+    outline: 0 !important;
+    border: none;
+    color:#0c51a600;
+
+}
+
+.wide-search-bar-button img {
+    margin-top: -5px;
+    margin-left: 35px;
+    color:#0c51a600;
+    width: 20px;
+}
 /*movie images transform*/
 .search-items img:hover
 {
