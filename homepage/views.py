@@ -4,13 +4,24 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
+from .forms import SearchForm
 
 # Create your views here.
 def homepage(request):
+    
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            print(title)
+
+            
+    form = SearchForm()
     counter = 1
     context = {
 
-        "info_url": 'more_info' # *** if you change this: make sure the right side 
+        "info_url": 'more_info',
+        'form':form, # *** if you change this: make sure the right side 
                                         # to match the first part of the more_info path in urls.py 
 
     }
@@ -36,15 +47,15 @@ def homepage(request):
     counter = 1
     for item in api.get_upcoming()['results']:
         
-        if (api.get_details('movie', int (item['id']))['status']!='Released'): #checks to see if movie has been released 
-            context[f'upcoming_movie{counter}'] = {
-                "title": item['title'],
-                "overview": item['overview'],
-                "poster_path": item['poster_path'],
-                "id": item['id'], 
+        # if (api.get_details('movie', int (item['id']))['status']!='Released'): #checks to see if movie has been released 
+        context[f'upcoming_movie{counter}'] = {
+            "title": item['title'],
+            "overview": item['overview'],
+            "poster_path": item['poster_path'],
+            "id": item['id'], 
                 
-            }
-            counter = counter + 1
+        }
+        counter = counter + 1
 
     return render(request, 'homepage/home.html', context)
 
