@@ -1,0 +1,115 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/wide-search.css' %}">
+<script defer>
+    function showMovies() {
+        var movie = document.getElementById("movie-results");
+        var tv = document.getElementById("tv-results");
+        var movie_toggle = document.getElementById("movie-toggle");
+        var tv_toggle = document.getElementById("tv-toggle");
+        movie_toggle.classList.add("search-toggle-selected")
+        tv_toggle.classList.remove("search-toggle-selected")
+        movie.style.display = "block";
+        tv.style.display = "none";
+    }
+    function showTV() {
+        var movie = document.getElementById("movie-results");
+        var tv = document.getElementById("tv-results");
+        var movie_toggle = document.getElementById("movie-toggle");
+        var tv_toggle = document.getElementById("tv-toggle");
+        tv_toggle.classList.add("search-toggle-selected")
+        movie_toggle.classList.remove("search-toggle-selected")
+        movie.style.display = "none";
+        tv.style.display = "block";
+    }
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="wide-search-wrapper" class="container">
+    <form class="header-btn wide-search-bar" id="wide-search-bar" action="{% url 'search' %}" method="get">
+        <input name="q" type="text" placeholder="Search..." id = "search-look">
+        <button type="submit" form="wide-search-bar" class="wide-search-bar-button"><img src="{% static 'img/search--v2.png' %}"></button>
+    </form>
+    </div>
+    <div id="search-wrapper" class="container">
+
+    
+    <!--buttons to filter movies or tv shows-->
+    <button type="button" onclick="showMovies()" class="search-toggle search-toggle-selected" id="movie-toggle">Movies</button>
+    <button type="button" onclick="showTV()" class="search-toggle" id="tv-toggle">TV Shows</button>
+
+    <div class="container search-results" id="movie-results">
+        {% for item in movie_results %}
+            {% if forloop.counter0|divisibleby:6 %}
+            <div class="row">
+            {% endif %}
+            {% if forloop.counter0|divisibleby:2 %}
+            <div class="col-md-4">
+                <div class="row">
+            {% endif %}
+            <div class="col-6 search-items">
+                <a href="../more_info/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
+            </div>
+            {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
+            </div>
+            {% endif %}
+
+            <!--if last closing div statements arent printed, then print-->
+            {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.last and not forloop.counter|divisibleby:6 %}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% if not movie_results %}
+            <h3>No results found</h3>
+        {% endif %}
+    </div>  
+    <div class="container search-results" id="tv-results" style="display: none">
+        {% for item in tv_results %}
+            {% if forloop.counter0|divisibleby:6 %}
+            <div class="row">
+            {% endif %}
+            {% if forloop.counter0|divisibleby:2 %}
+            <div class="col-md-4">
+                <div class="row">
+            {% endif %}
+            <div class="col-6 search-items">
+                <a href="../more_info/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
+            </div>
+            {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
+            </div>
+            {% endif %}
+
+            <!--if last closing div statements arent printed, then print-->
+            {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.last and not forloop.counter|divisibleby:6 %}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% if not tv_results %}
+            <h3>No results found</h3>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

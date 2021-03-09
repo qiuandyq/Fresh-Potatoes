@@ -18,12 +18,14 @@ def get_details(media_type, id):
 
     details = response.json()
 
-    details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
-    details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
-
+    if details['poster_path'] != None:
+        details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
+    else:
+        details['poster_path'] = "https://i.ibb.co/8KK48QG/image404.jpg"
+    if details['backdrop_path'] != None:
+        details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
     # rename 'name' key to 'title'
-    if media_type == 'tv':
-        details['title'] = details.pop('name')
+
 
     return details
 
@@ -117,15 +119,20 @@ def get_genre(media_type, id):
 #return: JSON, list of movies matching search title
 def search_movie_id(movie_title):
   url_title = movie_title.replace(" ","%20")
-  print(url_title)
   response = requests.get(f"{url_base}/search/movie?api_key={api_key}&query={url_title}")
   search_result = response.json()
 
   id_dict = {}
+  id_dict['results'] = []
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['title']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['title'],
+            "id": result["id"]
+        }
+    )
  
   return id_dict
 
@@ -134,15 +141,22 @@ def search_movie_id(movie_title):
 #return: JSON, list of movies matching search title
 def search_tv_id(title):
   url_title = title.replace(" ","%20")
-  print(url_title)
   response = requests.get(f"{url_base}/search/tv?api_key={api_key}&query={url_title}")
   search_result = response.json()
 
   id_dict = {}
+  id_dict['results'] = []
+  
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['name']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['name'],
+            "id": result["id"]
+        }
+    )
+    #id_dict[result['name']+" id"] = result["id"]
  
   return id_dict
 
