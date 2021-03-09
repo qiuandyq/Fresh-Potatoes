@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- for the faq accordian expand -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> <!-- for the faq accordian expand -->
+    
 </head>
 <body>
     
@@ -38,6 +42,7 @@
       <ul class="list-inline">
           <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
           <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
+          <li class="list-inline-item"><a href="{% url 'faq' %}">FAQ</a></li>
       </ul>
     </div>
   

@@ -79,6 +79,7 @@ def get_popular(media_type, page=1):
 def get_upcoming(page=1):
     response = requests.get(f"{url_base}/movie/upcoming?api_key={api_key}&page={page}")
 
+
     # check API request status code
     if response.status_code != 200:
         print(f"error: request error code {response.status_code}")
@@ -163,5 +164,37 @@ def update_urls(results):
         item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
 
 
+def get_trailer(media_type, id):
+    response = requests.get(f"{url_base}/{media_type}/{id}/videos?api_key={api_key}")
 
+
+    # check API request status code
+    if response.status_code != 200:
+        print(f"error: request error code {response.status_code}")
+        return response.status_code
+
+    trailer = response.json()
+
+    # rename 'name' key to 'title'
+    if media_type == 'tv':
+        trailer['title'] = trailer.pop('name')
+
+    return trailer
+
+def get_provider(media_type, id):
+    response = requests.get(f"{url_base}/{media_type}/{id}/videos?api_key={api_key}")
+
+
+    # check API request status code
+    if response.status_code != 200:
+        print(f"error: request error code {response.status_code}")
+        return response.status_code
+
+    trailer = response.json()
+
+    # rename 'name' key to 'title'
+    if media_type == 'tv':
+        trailer['title'] = trailer.pop('name')
+
+    return trailer
 
