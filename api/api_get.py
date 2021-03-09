@@ -178,4 +178,3 @@ def update_urls(results):
 
 
 
-print(get_upcoming(1))
