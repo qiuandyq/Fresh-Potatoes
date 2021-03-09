@@ -29,6 +29,7 @@ urlpatterns = [
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name="password_reset"), # 
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name="password_reset_done"), #the page that the user gets taken to after a password reset 
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name="password_reset_confirm"), #the link the user clicks on in the reset email they were sent
+    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name="password_reset_complete"), #
     path('', include('homepage.urls')),
     path('search/', search_views.search, name="search")
 ]
