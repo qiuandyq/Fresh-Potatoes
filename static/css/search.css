@@ -2,6 +2,7 @@
     color: white;
     text-align: center;
     padding-bottom: 150px;
+    margin-top: 90px;
 }
 
 #search-wrapper h1 {
@@ -9,6 +10,7 @@
 }
 
 #search-wrapper h2 {
+    
     margin-bottom: 60px;
 }
 
@@ -72,8 +74,9 @@
 }
 
 .search-toggle-selected {
-    background-color: #0c51a6;
+    background-color: #094185;
 }
+
 
 .footer {
     display: block;

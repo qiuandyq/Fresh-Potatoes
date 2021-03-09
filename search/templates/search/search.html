@@ -3,6 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/wide-search.css' %}">
 <script defer>
     function showMovies() {
         var movie = document.getElementById("movie-results");
@@ -30,9 +31,8 @@
 
 {% block content %}
 
-<div id="search-wrapper" class="container">
-    <h1>Search Results</h1>
-    <h2>"{{ query }}"</h2>
+    <div id="search-wrapper" class="container">
+
 
     <!--buttons to filter movies or tv shows-->
     <button type="button" onclick="showMovies()" class="search-toggle search-toggle-selected" id="movie-toggle">Movies</button>
