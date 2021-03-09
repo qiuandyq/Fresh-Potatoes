@@ -99,18 +99,21 @@ def faq(request):
     return render(request, 'homepage/faq.html', context)
 
 def more_info(request, movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
-  
+    
     item = api.get_details('movie', int(movie_id))
+    trailer = api.get_trailer('movie', int(movie_id))['results'][0]
     
 
     context = {
-        
+        "id": item['id'],
         "title": item['title'],
         "overview": item['overview'],
         "poster_path": item['poster_path'], 
         "release_date": item['release_date'],
         "runtime": item['runtime'],
-        "status":item['status']
+        "status":item['status'],
+        "rating":item['vote_average'],
+        "trailer":trailer['key'],
     }
     
 

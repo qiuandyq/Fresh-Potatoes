@@ -65,7 +65,7 @@ body
 {
     margin: 3% 20;
     margin-top: 150px;
-    margin-bottom: 250px;
+    margin-bottom: 150px;
 }
 
 .movie-details h1
@@ -105,6 +105,7 @@ body
 {
     border: 1px solid #fff !important;
     background: transparent !important;
+    display: inline;
 }
 
 /*More info icon position*/
@@ -275,3 +276,4 @@ body
 {
     font-size: 1.1em;
 }
+
