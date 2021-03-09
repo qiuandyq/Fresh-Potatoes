@@ -102,7 +102,14 @@ def more_info(request, movie_id): # takes in movie_id variable from the URL link
     
     item = api.get_details('movie', int(movie_id))
     trailer = api.get_trailer('movie', int(movie_id))['results'][0]
-    
+    if trailer:
+        trailer = trailer
+    else:
+        trailer = {}
+    counter = 0
+    context = {}
+    provider= api.get_provider('movie', int(movie_id))['results']['CA']
+
 
     context = {
         "id": item['id'],
@@ -114,6 +121,7 @@ def more_info(request, movie_id): # takes in movie_id variable from the URL link
         "status":item['status'],
         "rating":item['vote_average'],
         "trailer":trailer['key'],
+        "provider_link":provider['link'],
     }
     
 

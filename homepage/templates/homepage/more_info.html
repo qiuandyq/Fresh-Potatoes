@@ -13,8 +13,12 @@
                 <h4 style="color: white;"><i class="fa fa-info-circle" aria-hidden="true"></i>{{status}} </h4>
                 <h4 style="color: white;"><i class="fa fa-star" aria-hidden="true"></i></i>{{rating}} </h4>
                 <div class="more_info_btns">
-                    <a href="https://www.youtube.com/watch?v={{trailer}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Watch Trailer</a>
-                    <a href="" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Streaming site</a>
+                    {% if trailer  %}
+                        <a href="https://www.youtube.com/watch?v={{trailer}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Watch Trailer</a>
+                        <a href="{{provider_link}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Streaming site</a>
+                    {% else %}
+                        <a href="{{provider_link}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Streaming site</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6 text-right">

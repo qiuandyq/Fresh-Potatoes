@@ -182,7 +182,7 @@ def get_trailer(media_type, id):
     return trailer
 
 def get_provider(media_type, id):
-    response = requests.get(f"{url_base}/{media_type}/{id}/videos?api_key={api_key}")
+    response = requests.get(f"{url_base}/{media_type}/{id}/watch/providers?api_key={api_key}")
 
 
     # check API request status code
@@ -190,11 +190,11 @@ def get_provider(media_type, id):
         print(f"error: request error code {response.status_code}")
         return response.status_code
 
-    trailer = response.json()
+    provider = response.json()
 
     # rename 'name' key to 'title'
     if media_type == 'tv':
-        trailer['title'] = trailer.pop('name')
+        provider['title'] = provider.pop('name')
 
-    return trailer
+    return provider
 
