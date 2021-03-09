@@ -47,15 +47,15 @@ def homepage(request):
     counter = 1
     for item in api.get_upcoming()['results']:
         
-        if (api.get_details('movie', int (item['id']))['status']!='Released'): #checks to see if movie has been released 
-            context[f'upcoming_movie{counter}'] = {
-                "title": item['title'],
-                "overview": item['overview'],
-                "poster_path": item['poster_path'],
-                "id": item['id'], 
+        # if (api.get_details('movie', int (item['id']))['status']!='Released'): #checks to see if movie has been released 
+        context[f'upcoming_movie{counter}'] = {
+            "title": item['title'],
+            "overview": item['overview'],
+            "poster_path": item['poster_path'],
+            "id": item['id'], 
                 
-            }
-            counter = counter + 1
+        }
+        counter = counter + 1
 
     return render(request, 'homepage/home.html', context)
 
