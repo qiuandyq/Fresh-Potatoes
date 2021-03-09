@@ -1,0 +1,83 @@
+#search-wrapper {
+    color: white;
+    text-align: center;
+    padding-bottom: 150px;
+    margin-top: 90px;
+}
+
+#search-wrapper h1 {
+    margin-top: 90px;
+}
+
+#search-wrapper h2 {
+    
+    margin-bottom: 60px;
+}
+
+.search-results {
+    margin-top: 60px;
+}
+
+.search-items img {
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: -4px 4px 5px 0 #000;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.search-items h5 {
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    height: fit-content;
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/*movie images transform*/
+.search-items img:hover
+{
+    transform: translateY(-10px);
+}
+
+/*movie titles hover underline color*/
+.search-items a:hover
+{
+    color: white;
+}
+
+.search-toggle {
+    color: white;
+    background-color: #107afd;
+    padding: 7px 20px;
+    border-radius: 30px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 600;
+    outline: 0 !important;
+}
+
+.search-toggle-selected {
+    background-color: #094185;
+}
+
+
+.footer {
+    display: block;
+}

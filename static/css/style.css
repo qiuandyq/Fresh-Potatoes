@@ -209,5 +209,36 @@ body
     color: gray;
 }
 
+/* search bar */
+.search-bar {
+    background-color:#107afd;
+    border: 5px;
+    
+}
 
+
+.search-bar input {
+    background-color: #0c51a600;
+    color: white;
+    outline: 0 !important;
+    border: none;
+}
+
+.search-bar input::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.search-bar-button {
+    background:#0c51a600;
+    outline: 0 !important;
+    border: none;
+    color:#0c51a600;
+
+}
+
+.search-bar-button img {
+    margin-top: -5px;
+    color:#0c51a600;
+    width: 20px;
+}
 

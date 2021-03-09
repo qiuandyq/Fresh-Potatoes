@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users import views as user_views
+from search import views as search_views
 from django.contrib.auth import views as auth_views # import django's deafault backend authentication 
 
 urlpatterns = [
@@ -29,4 +30,5 @@ urlpatterns = [
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name="password_reset_done"), #the page that the user gets taken to after a password reset 
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name="password_reset_confirm"), #the link the user clicks on in the reset email they were sent
     path('', include('homepage.urls')),
+    path('search/', search_views.search, name="search")
 ]
