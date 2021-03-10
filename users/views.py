@@ -2,6 +2,11 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileUpdateForm
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+import api.api_get as api
 
 def register(request):
     if request.method == 'POST':
@@ -21,6 +26,16 @@ def profile(request):
 
 @login_required
 def survey(request):
+    # counter = 0
+    # context = {}
+    # for item in api.get_popular('movie')['results']:
+    #     context[f'popular_movie{counter}'] = {
+    #         "title": item['title'],
+    #         "overview": item['overview'],
+    #         "poster_path": item['poster_path'] 
+    #     }
+    #     counter = counter + 1
+
     if request.method == 'POST':
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
         if p_form.is_valid():

@@ -1,7 +1,7 @@
 {% extends "homepage/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
+    <div class="container" style="padding-bottom: 10rem;">
         <div class="row justify-content-md-center">
             <div class="col-md-auto" style="padding: 1rem">
                 <legend style="color: white">Let us know a little bit about yourself!</legend> 
@@ -11,9 +11,83 @@
             <div class="col-md-auto">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="card" style="width: 30rem; padding: 1rem">
+                    <div class="card" style="width: 50rem; padding: 1rem">
                         <div class="card-body">
-                            {{ p_form|crispy }}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        {{ p_form.dob|as_crispy_field }}
+                                        {{ p_form.genre|as_crispy_field }}
+                                        {{ p_form.stream|as_crispy_field }}
+                                    </div>
+
+                                    <!-- Manually rendered movie choices -->
+                                    <div class="container series">
+                                        <label for="id_dob">Select the movies that you like</label>
+                                        <div class="col-sm">
+                                            {% for choice in p_form.movies.field.choices %}
+                                                <label for="id_movies_{{ choice }}">
+                                                    <img src="{{ choice.1 }}" name="{{ choice.0 }}"/>   
+                                                </label> 
+                                                <input type="checkbox" class="form-check-input" name="movies" id="id_movies_{{ choice }}" value="{{ choice.0 }}" style="width:30px; height: 30px">
+                                            {% endfor %}
+                                        </div>    
+                                    </div>
+
+
+                                    <!-- <div class="col">
+                                        <form>
+                                            <div class="container series">
+                                                <h4>Do you like any of these movies?</h4>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <input type="checkbox" id="id_movies_1" value="{{context.popular_movie1.title}}" name="movies" />
+                                                        <label for="id_movies_1">
+                                                            <img src="{{context.popular_movie1.poster_path}}" name="{{context.popular_movie1.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_2" value="{{context.popular_movie2.title}}" name="movies" />
+                                                        <label for="id_movies_2">
+                                                            <img src="{{context.popular_movie2.poster_path}}" name="{{context.popular_movie2.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_3" value="{{context.popular_movie3.title}}" name="movies" />
+                                                        <label for="id_movies_3">
+                                                            <img src="{{context.popular_movie3.poster_path}}" name="{{context.popular_movie3.title}}"/>    
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <input type="checkbox" id="id_movies_4" value="{{context.popular_movie4.title}}" name="movies" />
+                                                        <label for="id_movies_4">
+                                                            <img src="{{context.popular_movie4.poster_path}}" name="{{context.popular_movie4.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_5" value="{{context.popular_movie5.title}}" name="movies" />
+                                                        <label for="id_movies_5">
+                                                            <img src="{{context.popular_movie5.poster_path}}" name="{{context.popular_movie5.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_6" value="{{context.popular_movie6.title}}" name="movies" />
+                                                        <label for="id_movies_6">
+                                                            <img src="{{context.popular_movie6.poster_path}}" name="{{context.popular_movie6.title}}"/>    
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <input type="checkbox" id="id_movies_7" value="{{context.popular_movie7.title}}" name="movies" />
+                                                        <label for="id_movies_7">
+                                                            <img src="{{context.popular_movie7.poster_path}}" name="{{context.popular_movie7.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_8" value="{{context.popular_movie8.title}}" name="movies" />
+                                                        <label for="id_movies_8">
+                                                            <img src="{{context.popular_movie8.poster_path}}" name="{{context.popular_movie8.title}}"/>    
+                                                        </label>
+                                                        <input type="checkbox" id="id_movies_9" value="{{context.popular_movie9.title}}" name="movies" />
+                                                        <label for="id_movies_9">
+                                                            <img src="{{context.popular_movie9.poster_path}}" name="{{context.popular_movie9.title}}"/>    
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>    
+                                    </div>         -->
+                                </div>
+                            </div>
                         </div>
                         <center>
                             <div class="form-group">
