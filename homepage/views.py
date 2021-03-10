@@ -112,14 +112,17 @@ def faq(request):
 def more_info(request, movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
     
     item = api.get_details('movie', int(movie_id))
-    trailer = api.get_trailer('movie', int(movie_id))['results'][0]
-    if trailer:
-        trailer = trailer
+    trailer = api.get_trailer('movie', int(movie_id))['results']
+    if bool(trailer):
+        trailer = trailer[0]['key']
     else:
-        trailer = {}
-    counter = 0
-    context = {}
-    provider= api.get_provider('movie', int(movie_id))['results']['CA']
+        trailer = 0
+
+    provider= api.get_provider('movie', int(movie_id))['results']
+    if bool(provider) and 'CA' in provider:
+        provider = provider['CA']['link']
+    else:
+        provider = 0
 
 
     context = {
@@ -131,8 +134,8 @@ def more_info(request, movie_id): # takes in movie_id variable from the URL link
         "runtime": item['runtime'],
         "status":item['status'],
         "rating":item['vote_average'],
-        "trailer":trailer['key'],
-        "provider_link":provider['link'],
+        "trailer":trailer,
+        "provider_link":provider,
     }
     
 
