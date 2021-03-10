@@ -54,7 +54,7 @@
                 <div class="row">
             {% endif %}
             <div class="col-6 search-items">
-                <a href="../more_info/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
+                <a href="../more_info/movie/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
             </div>
             {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
                 </div>
@@ -87,7 +87,7 @@
                 <div class="row">
             {% endif %}
             <div class="col-6 search-items">
-                <a href="../more_info/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
+                <a href="../more_info/tv/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
             </div>
             {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
                 </div>

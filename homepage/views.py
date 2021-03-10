@@ -109,29 +109,55 @@ def faq(request):
 
     return render(request, 'homepage/faq.html', context)
 
-def more_info(request, movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
+def more_info(request, media_type , movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
     
-    item = api.get_details('movie', int(movie_id))
-    trailer = api.get_trailer('movie', int(movie_id))['results']
+    item = api.get_details(media_type, int(movie_id))
+    trailer = api.get_trailer( media_type, int(movie_id))['results']
     if bool(trailer):
         trailer = trailer[0]['key']
     else:
         trailer = 0
 
-    provider= api.get_provider('movie', int(movie_id))['results']
+    provider= api.get_provider(media_type, int(movie_id))['results']
     if bool(provider) and 'CA' in provider:
         provider = provider['CA']['link']
     else:
         provider = 0
+ #assigning correct name for titles
+    if media_type=='movie':
+        title=item['title']
 
+    if media_type=='tv':
+        title=item['name']
+
+    #assigning correct name for release dates
+    if media_type=='movie':
+        release=item['release_date']
+
+    if media_type=='tv':
+        release=item['first_air_date']
+    
+      #assigning correct name for run time
+    if media_type=='movie':
+        runtime=item['runtime']
+
+    if media_type=='tv':
+        runtime=item['episode_run_time']
+        if runtime==[]:
+            runtime='?'
+        else:
+            runtime = str(runtime)[1:3]
+
+
+  
 
     context = {
         "id": item['id'],
-        "title": item['title'],
+        "title": title,
         "overview": item['overview'],
         "poster_path": item['poster_path'], 
-        "release_date": item['release_date'],
-        "runtime": item['runtime'],
+        "release_date": release,
+        "runtime": runtime,
         "status":item['status'],
         "rating":item['vote_average'],
         "trailer":trailer,

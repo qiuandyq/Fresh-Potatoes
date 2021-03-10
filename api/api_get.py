@@ -190,8 +190,7 @@ def get_trailer(media_type, id):
     trailer = response.json()
 
     # rename 'name' key to 'title'
-    if media_type == 'tv':
-        trailer['title'] = trailer.pop('name')
+   
 
     return trailer
 
@@ -207,8 +206,7 @@ def get_provider(media_type, id):
     provider = response.json()
 
     # rename 'name' key to 'title'
-    if media_type == 'tv':
-        provider['title'] = provider.pop('name')
+    
 
     return provider
 
