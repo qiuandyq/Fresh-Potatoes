@@ -188,7 +188,7 @@ def get_trailer(media_type, id):
         return response.status_code
 
     trailer = response.json()
-
+    
     # rename 'name' key to 'title'
     if media_type == 'tv':
         trailer['title'] = trailer.pop('name')
