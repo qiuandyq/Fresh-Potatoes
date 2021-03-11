@@ -109,6 +109,38 @@ def faq(request):
 
     return render(request, 'homepage/faq.html', context)
 
+
+def get_service_provider(service_type, provider_api_info): #service type will be either "flatrate", "rent" or "buy"
+    country= 'CA'
+    if service_type=='flatrate': # rename 'flatrate' to 'stream'
+        kind='stream'
+    else:
+        kind= service_type #otherwise keep the original sertice type (i.e 'buy' or 'rent')
+
+    service_providers={}
+    if bool(provider_api_info) and country in provider_api_info: #check to see if information exists for the country
+        if service_type in provider_api_info[country]:
+            counter=1
+
+            for stream_service in provider_api_info[country][str(service_type)]: # get all the providers for the service type
+
+                service_providers[f"provider{counter}"]={ #collect providers info in a dictionary
+
+                    'logo' : "https://image.tmdb.org/t/p/w45/"+stream_service["logo_path"],
+                    'name' : stream_service["provider_name"],
+                    'type' : kind,
+                
+                
+                }    
+                counter=counter+1
+    
+
+    else:
+        service_providers=0 #if there is no info for the country set to false
+
+
+    return service_providers
+
 def more_info(request, media_type , movie_id): # takes in movie_id variable from the URL link (see the <> brackes in urls.py)
     
     item = api.get_details(media_type, int(movie_id))
@@ -119,10 +151,40 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         trailer = 0
 
     provider= api.get_provider(media_type, int(movie_id))['results']
+    stream= api.get_provider(media_type, int(movie_id))['results']
     if bool(provider) and 'CA' in provider:
         provider = provider['CA']['link']
+
+        #provider_stream= provider_stream['flatrate']
     else:
         provider = 0
+ 
+    #country= 'CA'
+    stream_service_providers= get_service_provider('flatrate', stream)
+
+    rent_service_providers = get_service_provider('rent', stream)
+
+    buy_service_providers= get_service_provider('buy', stream)
+
+    kinds=['stream','rent','buy']
+
+    service_providers=-1
+    if stream_service_providers or buy_service_providers or rent_service_providers:
+        service_providers={
+
+        'stream': stream_service_providers,
+        'rent' : rent_service_providers,
+        'buy': buy_service_providers,
+        'kind': kinds,
+
+
+        }
+    else:
+        service_providers=0
+
+    
+
+
  #assigning correct name for titles
     if media_type=='movie':
         title=item['title']
@@ -162,6 +224,8 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "rating":item['vote_average'],
         "trailer":trailer,
         "provider_link":provider,
+        'providers': service_providers
+
     }
     
 
