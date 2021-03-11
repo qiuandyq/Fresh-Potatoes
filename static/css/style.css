@@ -252,6 +252,9 @@ body
     margin-top: -5px;
     color:#0c51a600;
     width: 20px;
+}
+
+
 .about-section
 {
     margin-top: 200px;
@@ -307,3 +310,9 @@ body
     font-size: 1.1em;
 }
 
+
+
+.provider-icon
+{
+    border-radius: 50%;
+}
