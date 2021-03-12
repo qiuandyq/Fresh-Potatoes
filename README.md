@@ -29,20 +29,20 @@ python manage.py runserver
 Webpage can be accessed on the browser at [127.0.0.1:8000](127.0.0.1:8000/) while the web server is running.
 
 ## Current Feature Implemented 
-- 02/23/2021
+- 02/23/2021  
     Fresh Potatoes web application now contains a fully operated login and registered system. The system is able to store a user's username and password as they registered to become one of the members of Fresh Potatoes. Furthermore, a profile feature has been implemented for each user who registered. Any changes or updates on users’ profile information will be saved and presented every time they login.
 
     Following the current progression speed of the project, the homepage for unregistered users is completed along with login, register, and profile pages. The body of the homepage has been seperated into 4 sections with one featured movie at the top and 3 categorized columns of movie showcases beneath. The 3 columns of movies are listed as popular movies, trending movies, and upcoming movies for unregistered users. Every movie present in the homepage is directly pulled from a third party database using application programming interface.
 
     The application programming interface that is introduced in our project is TMDb. In current progress, we are able to retrieve movie information including movie genres, poster, overview, and details including title, rating, budget, popularity, production and more. More API features require further research and implementation.
 
-- 03/11/2021
-    Individual Movie Page
-    All movies contain its individual pages introducing its basic information including movie genres, poster, overview, rating, trailer, and available streaming services.
-    Survey
-    In this iteration, users who logged in to the fresh potatoes are able to select their favorite movies genres, streaming platforms, and movies. All information gathered from the survey will be presented in users’ profile pages. 
-    Search Engine 
-    Users are able to search their desired movie title through the search bar in the navigation section. The application programming interface used in Fresh Potatoes supports keywords search instead of matching the same alphabets. The result of the search will be present in a new page with all movies in the database that contain the keywords. 
+- 03/11/2021  
+    Individual Movie Page  
+    All movies contain its individual pages introducing its basic information including movie genres, poster, overview, rating, trailer, and available streaming services.  
+    Survey  
+    In this iteration, users who logged in to the fresh potatoes are able to select their favorite movies genres, streaming platforms, and movies. All information gathered from the survey will be presented in users’ profile pages.   
+    Search Engine   
+    Users are able to search their desired movie title through the search bar in the navigation section. The application programming interface used in Fresh Potatoes supports keywords search instead of matching the same alphabets. The result of the search will be present in a new page with all movies in the database that contain the keywords.   
 
 ## Overview
 
