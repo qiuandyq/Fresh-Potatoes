@@ -2,6 +2,11 @@
 
 Fresh potatoes provides a simplified and more efficient movie searching process for any users that watches movies and TV shows at any age range. Though the recommendation option has been implemented on most of the streaming services, many users still feel lost while searching for something new to watch due to the limited content and overly complicated designs on most of the modern streaming services and databases such as Netflix and IMDb. Our project aims to solve that problem by implementing more defined and detailed recommendation options as well as filtering the movies and shows based on the streaming platforms they are on and provide a link to that platform. In this iteration our website allows the user to sign up for an account, login, logout and presents popular movies; trending movies; and upcoming movies based on their ranking. to either a logged in user or a logged-out user on our homepage. It also allows a logged in user to visit their user profile.
 
+## User Stories
+
+[Iteration 2](#Iteration-2)
+[Iteration 1](#Iteration-1)
+
 ## Iteration 2
 
 ### User Stories 1
@@ -112,7 +117,7 @@ Fresh potatoes provides a simplified and more efficient movie searching process 
 1. Given a genre when I search for a film or TV show then I am presented with a list of films in that genre
 2. Given some keyword(s) when I search for a film or TV show then I am presented with a list of films that are related to the keyword(s)
 
-# User Stories 6
+### User Stories 6
 
 **User story**: As someone who doesn’t have time to find movies I want to have recommendations displayed for me
 
