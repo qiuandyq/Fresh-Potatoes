@@ -4,8 +4,9 @@ Fresh potatoes provides a simplified and more efficient movie searching process 
 
 ## User Stories
 
-[Iteration 2](#Iteration-2)
-[Iteration 1](#Iteration-1)
+[Iteration 2](#iteration-2)
+
+[Iteration 1](#iteration-1)
 
 ## Iteration 2
 
