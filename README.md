@@ -38,7 +38,7 @@ The application programming interface that is introduced in our project is TMDb.
 
 ## Overview
 
-![Demonstration Video](src/demo.mp4)
+![Demonstration Video](src/demo2.mp4)
 
 Fresh potatoes provides a simplified and more efficient movie searching process for any users that watches movies and TV shows at any age range. Though the recommendation option has been implemented on most of the streaming services, many users still feel lost while searching for something new to watch due to the limited content and overly complicated designs on most of the modern streaming services and databases such as Netflix and IMDb. Our project aims to solve that problem by implementing more defined and detailed recommendation options as well as filtering the movies and shows based on the streaming platforms they are on and provide a link to that platform. 
 
