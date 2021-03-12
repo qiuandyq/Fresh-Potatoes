@@ -1,0 +1,94 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div id="content-wrap">
+    <div class="container movie-detailed-view">
+        <div class="row">
+            <div class="col-md-6 left-box">
+                <h1>{{title}}</h1>
+                <h4 style="color:white;"><i class="fa fa-calendar" aria-hidden="true"></i>{{release_date}}</h4>
+                <h4 style="color: white;"><i class="fa fa-hourglass-half" aria-hidden="true"></i>{{runtime}} minutes</h4>
+                <h4 style="color: white;"><i class="fa fa-info-circle" aria-hidden="true"></i>{{status}} </h4>
+                <h4 style="color: white;"><i class="fa fa-star" aria-hidden="true"></i></i>{{rating}} </h4>
+                <div class="more_info_btns">
+                    <!-- trailer-->
+                    {% if trailer %}
+                        <a href="https://www.youtube.com/watch?v={{trailer}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Watch Trailer</a>
+
+                    {% else %}
+                        <a class="watch-btn"><i class="fa fa-frown-o" aria-hidden="true"></i>Trailer Unavailable</a>
+                    {% endif %}
+                    <!-- provider link-->
+                    {% if provider_link %}
+                        <a href="{{provider_link}}" class="watch-btn"><i class="fa fa-play" aria-hidden="true"></i>Streaming Site</a>
+                    {% else %}
+                        <a class="watch-btn"><i class="fa fa-frown-o" aria-hidden="true"></i>CA Streaming Site Unavailable</a>
+                    {% endif %}
+
+                    
+                    
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="{{poster_path}}" class="movie-img"> 
+            </div>
+        </div>
+    </div>
+    <!-- Movie Overview -->
+    <div class="container movie-details-overview" style="color: white; margin-bottom: 75px;">
+        <h3>Overview:</h3>
+        <p>{{overview}}</p>
+    </div>
+    <!-- Where to watch-->
+    <div class="container movie-details-provider" style="color: white" >
+                        
+
+        <div>
+
+            {% if providers %}
+            <br>
+            <h3>Where to watch (More details on "<a href="{{provider_link}}" style="color:white;">Streaming Site</a>"):</h3>
+               
+            {% for key, value in providers.items %}
+            {% if key == 'rent' and value.items %}
+            <h5 style="color:grey"> Rent: </h5>
+            {% endif %}
+            {% if key == 'stream' and value.items %}
+            <h5 style="color:grey"> Stream: </h5>
+            {% endif %}
+            {% if key == 'buy' and value.items %}
+            <h5 style="color:grey"> Buy: </h5>
+            {% endif %}
+
+            <div class="row " >
+                {% for key, value in value.items %} 
+                
+                <div class= "col-md-1">
+                    <img src="{{value.logo}}" class="provider-icon" alt="Avatar">                                 
+                </div>
+                
+                
+                {% endfor %}
+            </div>
+            {% endfor %}
+            
+            {% else %}
+            
+            <h3>Where to watch:</h3>
+            <medium>Not provided through any watch services in Canada :(</medium>
+            
+            {% endif %}
+            
+        </div>
+    </div>    
+    
+    
+    
+</div>
+
+
+
+
+{% endblock %}

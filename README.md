@@ -46,6 +46,7 @@ The main overarching features of this project consist of filter features, recomm
 The recommendations on the user’s homepage are optimized by filtering out the movie they might not enjoy as well as filtering out movies based on the user’s age in order to give them appropriate movie recommendations. For example a user who is 14 years old would not be recommended a movie that is rated for those who are 18+ ( the type of rating can be changed in the user’s preferences).
 During the user’s initial signup we establish a basis for how movies should be filtered and recommended during the user’s first experience. We will have the user go through a survey to lay a foundation in order. The web site also has a recommendation feature where it recommends which streaming platform holds most of the movies it thinks the user would enjoy. From this information we can then further suggest what streaming platform might be best for the user. Each movie in the database would have a trailer, user rating, age rating, what platforms to watch it on, where a hardcopy can be found and a comment section where any (non banned) user can comment. A point for list of project features and subfeatures is listed below:
 
+## Features Planned for Iteration 2 (Update 02/23/2021)
 - Forgot password:
 Clicking the forgot password button sends an email link to the customer’s email and the customer can reset their password through the link in the email.
 - Recommendation system:
@@ -63,6 +64,15 @@ This will be a typical search feature. It will allow the user to search for ente
 - Rating System:
 This will be a system where a user can leave a rating out of 10 on a movie/show and have it contribute to an aggregate rating that is kept on the site.
 
+## Features Planned for Iteration 3 (Updated 03/11/2021)
+- More info on individual movie pages
+    - Genre
+    - Actors
+    - Comments 
+- Correctly format the survey for movies
+- Improve search function for reduced search time
+- Update functions for upcoming movies to show movies correctly
+- User profile page  
 ## Trello Board
 
-<img src="src/trelloboard.jpg"  width="400">
+<img src="src/Screenshot_2021-03-11_191400.png"  width="400">

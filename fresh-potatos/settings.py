@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig',
     'users.apps.UsersConfig',
+    'search.apps.SearchConfig'
 ]
 
 MIDDLEWARE = [
@@ -133,10 +134,11 @@ LOGIN_URL ='login' # takes user to login page if they try to go to the profile p
 # host email that sends reset password link (might refactor later)
 EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend' # "SMTP" stands for Simple Mail Transfer Protocol
 EMAIL_HOST= 'smtp.gmail.com' # this is the SMTP address for Gmail
-EMAIL_PORT= 587  # the port connects the mail client to the SMTP server (the sending port is 25 nomatter what)
-EMAIL_USE_TLS= True
+EMAIL_PORT= 465  # the port connects the mail client to the SMTP server (the sending port is 25 nomatter what)
+EMAIL_USE_SSL= True
 EMAIL_HOST_USER= 'freshpotatosreset@gmail.com'
 EMAIL_HOST_PASSWORD= 'hlbcxfaofughmdig'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

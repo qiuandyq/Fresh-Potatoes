@@ -18,12 +18,14 @@ def get_details(media_type, id):
 
     details = response.json()
 
-    details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
-    details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
-
+    if details['poster_path'] != None:
+        details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
+    else:
+        details['poster_path'] = "https://i.ibb.co/8KK48QG/image404.jpg"
+    if details['backdrop_path'] != None:
+        details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
     # rename 'name' key to 'title'
-    if media_type == 'tv':
-        details['title'] = details.pop('name')
+
 
     return details
 
@@ -79,6 +81,7 @@ def get_popular(media_type, page=1):
 def get_upcoming(page=1):
     response = requests.get(f"{url_base}/movie/upcoming?api_key={api_key}&page={page}")
 
+
     # check API request status code
     if response.status_code != 200:
         print(f"error: request error code {response.status_code}")
@@ -116,15 +119,20 @@ def get_genre(media_type, id):
 #return: JSON, list of movies matching search title
 def search_movie_id(movie_title):
   url_title = movie_title.replace(" ","%20")
-  print(url_title)
   response = requests.get(f"{url_base}/search/movie?api_key={api_key}&query={url_title}")
   search_result = response.json()
 
   id_dict = {}
+  id_dict['results'] = []
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['title']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['title'],
+            "id": result["id"]
+        }
+    )
  
   return id_dict
 
@@ -133,15 +141,22 @@ def search_movie_id(movie_title):
 #return: JSON, list of movies matching search title
 def search_tv_id(title):
   url_title = title.replace(" ","%20")
-  print(url_title)
   response = requests.get(f"{url_base}/search/tv?api_key={api_key}&query={url_title}")
   search_result = response.json()
 
   id_dict = {}
+  id_dict['results'] = []
+  
   result_num = 0
   for result in search_result['results']:
     result_num += 1
-    id_dict[result['name']+" id"] = result["id"]
+    id_dict['results'].append(
+        {
+            "title": result['name'],
+            "id": result["id"]
+        }
+    )
+    #id_dict[result['name']+" id"] = result["id"]
  
   return id_dict
 
@@ -163,5 +178,35 @@ def update_urls(results):
         item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
 
 
+def get_trailer(media_type, id):
+    response = requests.get(f"{url_base}/{media_type}/{id}/videos?api_key={api_key}")
 
+
+    # check API request status code
+    if response.status_code != 200:
+        print(f"error: request error code {response.status_code}")
+        return response.status_code
+
+    trailer = response.json()
+    
+    # rename 'name' key to 'title'
+   
+
+    return trailer
+
+def get_provider(media_type, id):
+    response = requests.get(f"{url_base}/{media_type}/{id}/watch/providers?api_key={api_key}")
+
+
+    # check API request status code
+    if response.status_code != 200:
+        print(f"error: request error code {response.status_code}")
+        return response.status_code
+
+    provider = response.json()
+
+    # rename 'name' key to 'title'
+    
+
+    return provider
 
