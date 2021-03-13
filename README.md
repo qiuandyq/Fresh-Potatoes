@@ -54,8 +54,12 @@ The main overarching features of this project consist of filter features, recomm
 The recommendations on the user’s homepage are optimized by filtering out the movie they might not enjoy as well as filtering out movies based on the user’s age in order to give them appropriate movie recommendations. For example a user who is 14 years old would not be recommended a movie that is rated for those who are 18+ ( the type of rating can be changed in the user’s preferences).
 During the user’s initial signup we establish a basis for how movies should be filtered and recommended during the user’s first experience. We will have the user go through a survey to lay a foundation in order. The web site also has a recommendation feature where it recommends which streaming platform holds most of the movies it thinks the user would enjoy. From this information we can then further suggest what streaming platform might be best for the user. Each movie in the database would have a trailer, user rating, age rating, what platforms to watch it on, where a hardcopy can be found and a comment section where any (non banned) user can comment. A point for list of project features and subfeatures is listed below:
 ## Testing
-This iteration had very few testable code blocks as much of the code was frontend development. However, we did develop some test functions to test the validity of our search function. These functions are found in test_api.py and can be run by executing that same file.
+This iteration had very few testable code blocks as much of the code was frontend development. However, we did develop some test functions to test the validity of our search function. These functions are found in test_api.py and can be run by executing that same file. The test code checks to find results in the search that don't match the search word. The code will tell you if it finds such discrepencies.
 
+To run the test code execute:
+```
+cd api
+```
 ```
 py test_api.py
 ```
