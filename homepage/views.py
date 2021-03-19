@@ -224,9 +224,9 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "rating":item['vote_average'],
         "trailer":trailer,
         "provider_link":provider,
-        'providers': service_providers
-
-    }
+        'providers': service_providers,
+        'genres':item['genres'],
+    }   
     
 
     return render(request, 'homepage/more_info.html', context )

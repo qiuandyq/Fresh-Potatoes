@@ -11,7 +11,14 @@
                 <h4 style="color:white;"><i class="fa fa-calendar" aria-hidden="true"></i>{{release_date}}</h4>
                 <h4 style="color: white;"><i class="fa fa-hourglass-half" aria-hidden="true"></i>{{runtime}} minutes</h4>
                 <h4 style="color: white;"><i class="fa fa-info-circle" aria-hidden="true"></i>{{status}} </h4>
-                <h4 style="color: white;"><i class="fa fa-star" aria-hidden="true"></i></i>{{rating}} </h4>
+                <h4 style="color: white;"><i class="fa fa-star" aria-hidden="true"></i>{{rating}} </h4>
+                <h4 style="color: white;"><ul id="horizontal-list" ><i class="fa fa-id-card-o" aria-hidden="true"></i>  
+                    
+                    {% for item in genres %}
+                    <li style="display: inline-block;"><p style="font-size:medium;">{{item.name}}</p></li>
+                    {% endfor %}
+                    </ul>
+                </h4>
                 <div class="more_info_btns">
                     <!-- trailer-->
                     {% if trailer %}
@@ -82,7 +89,7 @@
             {% endif %}
             
         </div>
-    </div>    
+    </div>
     
     
     
