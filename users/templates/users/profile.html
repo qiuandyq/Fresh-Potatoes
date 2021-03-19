@@ -22,17 +22,28 @@
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3">
-                            Genre Preferences: <h3>{{ user.profile.genre }}</h3>
+                            Genre Preferences: 
+                            {% for item in genre %}
+                                <h3>{{item}}</h3>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3">
-                            Streaming Services: <h3>{{ user.profile.stream }}</h3>
+                            Streaming Services: 
+                            {% for item in services %}
+                            <h3>{{ item }}</h3>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3">
-                            Liked Movies: <h3>{{ user.profile.movies }}</h3>
+                            Liked Movies:
+                            <div class="row"> 
+                            {% for item in movies %}
+                            <img src="{{ item }}">
+                            {% endfor %}
+                            </div>
                         </div>
                     </div>
                     <div class="row">

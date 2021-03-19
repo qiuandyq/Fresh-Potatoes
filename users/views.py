@@ -1,7 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.forms import UsernameField
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileUpdateForm
+from .models import Profile
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -22,6 +24,26 @@ def register(request):
 
 @login_required
 def profile(request):
+    profile = Profile.objects.get(user=request.user)
+    movies = profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(',')
+    poster = []
+    for item in movies:
+        poster_path = api.get_details("movie", int(item))
+        poster.append(poster_path['poster_path'])
+    genres = []
+    for item in profile.genre.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        for genre in api.get_genre("movie")['genres']:
+            if int(item) == int(genre['id']):
+                genres.append(genre['name'])
+    services = []
+    for item in profile.stream.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        services.append(item)
+    context = {
+
+        'movies':poster,
+        'genre':genres,
+        'services':services,
+    }
     return render(request, 'users/profile.html')
 
 @login_required
