@@ -29,7 +29,7 @@
                                                 <label for="id_movies_{{ choice }}">
                                                     <img src="{{ choice.1 }}" name="{{ choice.0 }}"/>   
                                                 </label> 
-                                                <input type="checkbox" class="form-check-input" name="movies" id="id_movies_{{ choice }}" value="{{ choice.0 }}" style="width:30px; height: 30px">
+                                                <input type="checkbox" class="form-check-input" name="movies" id="id_movies_{{ choice }}" value="{{ choice.0 }}" {% if choice.0 in p_form.movies.value %} checked="checked"{% endif %} style="width:30px; height: 30px">
                                             {% endfor %}
                                         </div>    
                                     </div>

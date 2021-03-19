@@ -7,8 +7,13 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
+import logging
+
+logger = logging.getLogger("mylogger")
+
 
 def register(request):
+    post = request.POST.copy()
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -38,6 +43,7 @@ def survey(request):
 
     if request.method == 'POST':
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        post = request.POST.copy()
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Updated')
