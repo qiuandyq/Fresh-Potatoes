@@ -25,26 +25,29 @@ def register(request):
 @login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    movies = profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(',')
     poster = []
-    for item in movies:
-        poster_path = api.get_details("movie", int(item))
-        poster.append(poster_path['poster_path'])
+    for item in profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        if item:
+            movie_details = api.get_details("movie", int(item))
+            poster.append(movie_details['poster_path'])
     genres = []
     for item in profile.genre.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
-        for genre in api.get_genre("movie")['genres']:
-            if int(item) == int(genre['id']):
-                genres.append(genre['name'])
+        if item:
+            for genre in api.get_genre("movie")['genres']:
+                if int(item) == int(genre['id']):
+                    genres.append(genre['name'])
     services = []
     for item in profile.stream.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
-        services.append(item)
+        if item:
+            services.append(item)
+
     context = {
 
         'movies':poster,
         'genre':genres,
         'services':services,
     }
-    return render(request, 'users/profile.html')
+    return render(request, 'users/profile.html', context)
 
 @login_required
 def survey(request):

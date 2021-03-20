@@ -65,7 +65,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     SERVICES = (
         ('Netflix', 'Netflix'),
-        (1, 'Prime Video'),
+        ("Prime Video", 'Prime Video'),
         ('Crave TV', 'Crave TV'),
         ('Hulu', 'Hulu'),
         ('Disney+', 'Disney+'),
