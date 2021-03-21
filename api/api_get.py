@@ -174,8 +174,10 @@ HELPER FUNCTIONS
 
 def update_urls(results):
     for item in results:
-        item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
-        item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
+        if item['poster_path'] != None:
+            item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
+        if item['backdrop_path'] != None:
+            item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
 
 
 def get_trailer(media_type, id):
