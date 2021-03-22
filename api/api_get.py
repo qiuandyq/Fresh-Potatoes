@@ -1,5 +1,8 @@
 import json
 import requests
+import logging
+
+logger = logging.getLogger("mylogger")
 
 api_key = "0cda82335e834f31bcbc8a847a151fe5"
 url_base = "https://api.themoviedb.org/3"
