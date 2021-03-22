@@ -9,6 +9,8 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
 
+class SearchForm(forms.Form):
+    title = forms.CharField()
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
 
@@ -21,43 +23,43 @@ class ProfileUpdateForm(forms.ModelForm):
     context = {}
     for item in api.get_popular('movie')['results']:
         context[f'popular_movie{counter}'] = {
-            "title": item['title'],
+            "id": item['id'],
             "poster_path": item['poster_path'] 
         }
         counter = counter + 1
 
     MOVIES = (
-        (context['popular_movie0']['title'], context['popular_movie0']['poster_path']),
-        (context['popular_movie1']['title'], context['popular_movie1']['poster_path']),
-        (context['popular_movie2']['title'], context['popular_movie2']['poster_path']),
-        (context['popular_movie3']['title'], context['popular_movie3']['poster_path']),
-        (context['popular_movie4']['title'], context['popular_movie4']['poster_path']),
-        (context['popular_movie5']['title'], context['popular_movie5']['poster_path']),
-        (context['popular_movie6']['title'], context['popular_movie6']['poster_path']),
-        (context['popular_movie7']['title'], context['popular_movie7']['poster_path']),
-        (context['popular_movie8']['title'], context['popular_movie8']['poster_path']),
+        (context['popular_movie0']['id'], context['popular_movie0']['poster_path']),
+        (context['popular_movie1']['id'], context['popular_movie1']['poster_path']),
+        (context['popular_movie2']['id'], context['popular_movie2']['poster_path']),
+        (context['popular_movie3']['id'], context['popular_movie3']['poster_path']),
+        (context['popular_movie4']['id'], context['popular_movie4']['poster_path']),
+        (context['popular_movie5']['id'], context['popular_movie5']['poster_path']),
+        (context['popular_movie6']['id'], context['popular_movie6']['poster_path']),
+        (context['popular_movie7']['id'], context['popular_movie7']['poster_path']),
+        (context['popular_movie8']['id'], context['popular_movie8']['poster_path']),
     )
 
     GENRES = (
-        ('Action', 'Action'),
-        ('Adventure', 'Adventure'),
-        ('Animation', 'Animation'),
-        ('Comedy', 'Comedy'),
-        ('Crime', 'Crime'),
-        ('Documentary', 'Documentary'),
-        ('Drama', 'Drama'),
-        ('Family', 'Family'),
-        ('Fantasy', 'Fantasy'),
-        ('History', 'History'),
-        ('Horror', 'Horror'),
-        ('Music', 'Music'),
-        ('Mystery', 'Mystery'),
-        ('Romance', 'Romance'),
-        ('Science Fiction', 'Science Fiction'),
-        ('TV Movie', 'TV Movie'),
-        ('Thriller', 'Thriller'),
-        ('War', 'War'),
-        ('Western', 'Western'),
+        ('28', 'Action'),
+        ('12', 'Adventure'),
+        ('16', 'Animation'),
+        ('35', 'Comedy'),
+        ('80', 'Crime'),
+        ('99', 'Documentary'),
+        ('18', 'Drama'),
+        ('10751', 'Family'),
+        ('14', 'Fantasy'),
+        ('36', 'History'),
+        ('27', 'Horror'),
+        ('10402', 'Music'),
+        ('9648', 'Mystery'),
+        ('10749', 'Romance'),
+        ('878', 'Science Fiction'),
+        ('10770', 'TV Movie'),
+        ('53', 'Thriller'),
+        ('10752', 'War'),
+        ('37', 'Western'),
     )
 
     SERVICES = (

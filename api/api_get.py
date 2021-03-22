@@ -1,5 +1,8 @@
 import json
 import requests
+import logging
+
+logger = logging.getLogger("mylogger")
 
 api_key = "0cda82335e834f31bcbc8a847a151fe5"
 url_base = "https://api.themoviedb.org/3"
@@ -175,8 +178,10 @@ HELPER FUNCTIONS
 
 def update_urls(results):
     for item in results:
-        item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
-        item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
+        if item['poster_path'] != None:
+            item['poster_path'] = "https://image.tmdb.org/t/p/w200" + item['poster_path']
+        if item['backdrop_path'] != None:
+            item['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + item['backdrop_path']
 
 
 def get_trailer(media_type, id):

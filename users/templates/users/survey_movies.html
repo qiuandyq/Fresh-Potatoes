@@ -1,0 +1,35 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container" style="padding-bottom: 10rem;">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="padding: 1rem">
+                <legend style="color: white">Look up movies that you like!</legend> 
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card" style="width: 50rem; padding: 1rem">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <form class="header-btn wide-search-bar" id="wide-search-bar" action="{% url 'search' %}" method="get">
+                                        <input name="q" type="text" placeholder="Search..." id = "search-look">
+                                        <button type="submit" form="wide-search-bar" class="wide-search-bar-button"></button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Continue</button>
+                        </div>     
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
