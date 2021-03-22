@@ -30,6 +30,29 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+        },
+    },
+    'loggers': {
+        'mylogger': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        },
+    },
+}
 
 # Application definition
 
@@ -43,7 +66,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig',
     'users.apps.UsersConfig',
-    'search.apps.SearchConfig'
+    'search.apps.SearchConfig',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
