@@ -125,6 +125,6 @@ def survey_movies(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Updated')
-            return redirect('home')
+            return redirect('profile')
 
     return render(request, 'users/survey_movies.html', {'context': context})
