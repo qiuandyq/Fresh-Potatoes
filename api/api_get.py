@@ -168,6 +168,7 @@ def search_tv_id(title):
 def get_images(media_type, id):
     response = requests.get(f"{url_base}/{media_type}/{id}/images?api_key={api_key}")
     result = response.json()
+    
 
     return result
 
@@ -215,3 +216,16 @@ def get_provider(media_type, id):
 
     return provider
 
+def get_recommendation(media_type,movie_list):
+    for m_id in movie_list:
+        print("RECOMMENDED FOR ", m_id)
+        response = requests.get(f"{url_base}/{media_type}/{m_id}/similar?api_key={api_key}")
+        result = response.json()
+        for i in result['results']:
+            print(i['title'])
+        
+
+
+test_id_list = [299534,299536]
+get_recommendation('movie',test_id_list)
+print(search_movie_id("Avengers"))
