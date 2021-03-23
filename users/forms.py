@@ -9,6 +9,11 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
 
+class AddToMoviesForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['movies', 'tv']
+
 class SearchForm(forms.Form):
     title = forms.CharField()
 class UserRegisterForm(UserCreationForm):
@@ -75,7 +80,11 @@ class ProfileUpdateForm(forms.ModelForm):
     dob = forms.DateField(label="Date of Birth", widget=forms.widgets.DateTimeInput(attrs={"type": "date"}))
     genre = forms.MultipleChoiceField(label="Genres", widget=forms.CheckboxSelectMultiple, choices=GENRES)
     stream = forms.MultipleChoiceField(label="What streaming services do you use?", widget=forms.CheckboxSelectMultiple, choices=SERVICES)
-    movies = forms.MultipleChoiceField(label="Select any movies that you like", widget=forms.CheckboxSelectMultiple, choices=MOVIES, required=False)
+    # movies = forms.MultipleChoiceField(label="Select any movies that you like", widget=forms.CheckboxSelectMultiple, choices=MOVIES, required=False)
     class Meta:
         model = Profile
-        fields = ['dob', 'genre', 'stream', 'movies']
+        fields = ['dob', 
+                    'genre', 
+                    'stream', 
+                    # 'movies'
+                    ]
