@@ -234,3 +234,6 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
 
 def farm(request):
     return render(request, 'homepage/potato_farm.html' )
+
+def farmedit(request):
+    return render(request, 'homepage/potato_farm_edit.html' )
