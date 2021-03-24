@@ -62,6 +62,7 @@ def homepage(request):
 def about(request):
     return render(request, 'homepage/about.html')
 
+
 def faq(request):
     faqs=[
         {   
@@ -230,3 +231,6 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
     
 
     return render(request, 'homepage/more_info.html', context )
+
+def farm(request):
+    return render(request, 'homepage/potato_farm.html' )
