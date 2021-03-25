@@ -217,15 +217,33 @@ def get_provider(media_type, id):
     return provider
 
 def get_recommendation(media_type,movie_list):
+    #get a list of similar movies for each movie in the input list
+    #append those lists to a larger list which can be looped through
+    similar_list = []
     for m_id in movie_list:
-        print("RECOMMENDED FOR ", m_id)
         response = requests.get(f"{url_base}/{media_type}/{m_id}/similar?api_key={api_key}")
         result = response.json()
         for i in result['results']:
-            print(i['title'])
-        
+            append_dict = {'title':i['title'],'id':i['id']}
+            similar_list.append(append_dict)
+    #loop thorugh the larger list and record the amount of times each movie appears
+    movie_scores = {}
+    for i in similar_list:
+        curr_movie = str(i['id'])
+        if curr_movie in movie_scores.keys():
+            movie_scores[curr_movie] += 1
+        else:
+            movie_scores.update({curr_movie:1})
+    #loop through the movie scores and arrange them in an output list largest to smallest
+    reco_list = []
+    while movie_scores:
+        maxi = max(movie_scores,key = movie_scores.get)
+        reco_list.append(maxi)
+        del movie_scores[maxi]
+
+    return reco_list
+    
 
 
 test_id_list = [299534,299536]
-get_recommendation('movie',test_id_list)
-print(search_movie_id("Avengers"))
+print(get_recommendation('movie',test_id_list))
