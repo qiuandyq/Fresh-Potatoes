@@ -7,7 +7,7 @@ class Profile(models.Model):
     genre = models.CharField(max_length=300, default="")
     stream = models.CharField(max_length=300, default="")
     movies = models.CharField(max_length=1000, default="")
+    tv = models.CharField(max_length=1000, default="", blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
