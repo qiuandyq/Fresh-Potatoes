@@ -1,0 +1,11 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h1 style="text-align: left;font-size: 20;color: var(--white);">My Potato Farm</h1>
+    <a href="{% url 'farmedit' %}" class="header-btn">Edit</a>
+</div>
+
+{% endblock %}

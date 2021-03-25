@@ -99,7 +99,7 @@ def get_upcoming(page=1):
 # param1: string, type of media (either 'tv' or 'movie')
 # param2: string, title ID 
 # return: JSON list of genres for movie
-def get_genre(media_type, id):
+def get_genre(media_type):
     response = requests.get(f"{url_base}/genre/{media_type}/list?api_key={api_key}")
 
     # check API request status code

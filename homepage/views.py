@@ -62,6 +62,7 @@ def homepage(request):
 def about(request):
     return render(request, 'homepage/about.html')
 
+
 def faq(request):
     faqs=[
         {   
@@ -224,9 +225,15 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "rating":item['vote_average'],
         "trailer":trailer,
         "provider_link":provider,
-        'providers': service_providers
-
-    }
+        'providers': service_providers,
+        'genres':item['genres'],
+    }   
     
 
     return render(request, 'homepage/more_info.html', context )
+
+def farm(request):
+    return render(request, 'homepage/potato_farm.html' )
+
+def farmedit(request):
+    return render(request, 'homepage/potato_farm_edit.html' )

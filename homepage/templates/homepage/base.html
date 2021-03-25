@@ -35,11 +35,13 @@
                 <a href="{% url 'profile' %}" class="header-btn">Profile</a>
                 <a href="{% url 'about' %}" class="header-btn">About</a>
                 <a href="{% url 'home' %}" class="header-btn">Home</a>
+                <a href="{% url 'farm' %}" class="header-btn">My Farm</a>
             {% else %}
                 <a href="{% url 'login' %}" class="header-btn">Login</a>
                 <a href="{% url 'register' %}" class="header-btn">Register</a>
                 <a href="{% url 'about' %}" class="header-btn">About</a>
                 <a href="{% url 'home' %}" class="header-btn">Home</a>
+                <a href="{% url 'farm' %}" class="header-btn">My Farm</a>
             {% endif %}
     </div>
 
