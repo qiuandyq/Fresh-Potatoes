@@ -54,6 +54,7 @@
 }
 
 .watchlater-remove-item {
+    background-color: #b71c1c;
     position: absolute;
     padding: 5px;
     top: -15px;

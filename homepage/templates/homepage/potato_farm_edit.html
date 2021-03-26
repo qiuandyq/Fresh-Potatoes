@@ -21,7 +21,13 @@
                 <div class="row">
             {% endif %}
             <div class="col-6 watchlater-items">
-                <a href="../more_info/{{item.media_type}}/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a><a href="../remove_watch_later/{{item.media_type}}/{{item.id}}" class="header-btn watchlater-remove-item"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a href="../more_info/{{item.media_type}}/{{ item.id }}">
+                    <img src="{{item.poster_path}}">
+                    <h5>{{item.title}}</h5>
+                </a>
+                <a href="../remove_watch_later/{{item.media_type}}/{{item.id}}" class="header-btn watchlater-remove-item">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
             </div>
             {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
                 </div>
