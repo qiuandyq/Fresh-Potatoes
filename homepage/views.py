@@ -305,7 +305,6 @@ def remove_watch_later(request, media_type, movie_id):
     profile = Profile.objects.get(user=request.user)
     if media_type == "all":
         profile.watchlater.all().delete()
-        return render(request, 'homepage/potato_farm_edit.html')
     else:
         exists = False
         for item in profile.watchlater.all():
