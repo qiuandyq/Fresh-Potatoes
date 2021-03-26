@@ -262,7 +262,25 @@ def farm(request):
     return render(request, 'homepage/potato_farm.html', context)
 
 def farmedit(request):
-    return render(request, 'homepage/potato_farm_edit.html' )
+    # get user data and watch later list
+    profile = Profile.objects.get(user=request.user)
+    watchlater_list = []
+    
+    # get details for each item
+    for item in profile.watchlater.all():
+        entry = {
+            'title': item.title,
+            'media_type': item.media_type,
+            'id': item.movie_id,
+            'poster_path': api.get_details(item.media_type, item.movie_id)['poster_path']
+        }
+        watchlater_list.append(entry)
+    
+    context = {
+        'watchlater_list': watchlater_list
+    }
+    
+    return render(request, 'homepage/potato_farm_edit.html', context)
 
 def add_watch_later(request, media_type, movie_id):
     profile = Profile.objects.get(user=request.user)
@@ -282,3 +300,20 @@ def add_watch_later(request, media_type, movie_id):
         'movie_id': movie_id,
     }
     return render(request, 'homepage/add_watch_later.html', context)
+
+def remove_watch_later(request, media_type, movie_id):
+    profile = Profile.objects.get(user=request.user)
+    if media_type == "all":
+        profile.watchlater.all().delete()
+        return render(request, 'homepage/potato_farm_edit.html')
+    else:
+        exists = False
+        for item in profile.watchlater.all():
+            if item.movie_id == movie_id:
+                item.delete()
+                exists = True
+    context = {
+        'media_type': media_type,
+        'movie_id': movie_id,
+    }
+    return render(request, 'homepage/remove_watch_later.html', context)

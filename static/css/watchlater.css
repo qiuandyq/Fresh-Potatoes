@@ -52,3 +52,10 @@
     color: #ccc;
     text-align: center;
 }
+
+.watchlater-remove-item {
+    position: absolute;
+    padding: 5px;
+    top: -15px;
+    right: 0;
+}
