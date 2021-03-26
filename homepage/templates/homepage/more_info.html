@@ -1,5 +1,9 @@
 {% extends "homepage/base.html" %}
 {% load static %}
+
+
+
+
 {% block content %}
 
 
@@ -34,8 +38,82 @@
                         <a class="watch-btn"><i class="fa fa-frown-o" aria-hidden="true"></i>CA Streaming Site Unavailable</a>
                     {% endif %}
                     {% if user.is_authenticated %}
-                        <a class="watch-btn" href="../../../add_watch_later/{{media_type}}/{{id}}"><i class="fa fa-plus" aria-hidden="true"></i>Watch Later</a>
+                        <!-- Trigger/Open The Modal -->
+                        <style>
+                            .modal {
+                                display: none; /* Hidden by default */
+                                position: fixed; /* Stay in place */
+                                z-index: 1; /* Sit on top */
+                                left: 0;
+                                top: 0;
+                                width: 100%; /* Full width */
+                                height: 100%; /* Full height */
+                                overflow: auto; /* Enable scroll if needed */
+                                background-color: rgb(0,0,0); /* Fallback color */
+                                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                            }
+                            
+                            /* Modal Content/Box */
+                            .modal-content {
+                                background-color: #fefefe;
+                                margin: 5% auto; /* 15% from the top and centered */
+                                padding-bottom: 20px;
+                                border: 1px solid #888;
+                                width: 40%; /* Could be more or less, depending on screen size */
+                            }
+
+                            
+                            /* The Close Button */
+                            .close {
+                                color: #aaa;
+                                float: right;
+                                font-size: 28px;
+                                font-weight: bold;
+                            }
+                            
+                            .close:hover,
+                            .close:focus {
+                                color: black;
+                                text-decoration: none;
+                                cursor: pointer;
+                            }
+                        </style>
+                        <a class="watch-btn" id="myBtn" role="button"><i class="fa fa-plus" aria-hidden="true"></i>Watch Later</a>
+                        <div id="watch-laterModal" class="modal">
+                            <div class="modal-content" >
+                                <span class="close">&times;</span>
+                                <p style="color: black; margin:auto;">Movie Added! Check your farm for added movies!</p>
+                            </div>
+                        </div>
+
+                        <script>
+                            var modal = document.getElementById("watch-laterModal");
+                            
+                            // Get the button that opens the modal
+                            var btn = document.getElementById("myBtn");
+                            
+                            // Get the <span> element that closes the modal
+                            var span = document.getElementsByClassName("close")[0];
+                            
+                            // When the user clicks on the button, open the modal
+                            btn.onclick = function() {
+                              modal.style.display = "block";
+                            }
+                            
+                            // When the user clicks on <span> (x), close the modal
+                            span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+                            
+                            // When the user clicks anywhere outside of the modal, close it
+                            window.onclick = function(event) {
+                              if (event.target == modal) {
+                                modal.style.display = "none";
+                              }
+                            }
+                            </script>
                     {% endif %}
+                    
                     
                 </div>
             </div>
