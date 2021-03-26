@@ -213,11 +213,12 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
             runtime = str(runtime)[1:3]
 
     # check if movie is already added to watch later list
-    watchlater_list = Profile.objects.get(user=request.user).watchlater.all()
     exists_watchlater = False
-    for i in watchlater_list:
-        if i.movie_id == movie_id:
-            exists_watchlater = True
+    if request.user.is_authenticated:
+        watchlater_list = Profile.objects.get(user=request.user).watchlater.all()
+        for i in watchlater_list:
+            if i.movie_id == movie_id:
+                exists_watchlater = True
   
 
     context = {
