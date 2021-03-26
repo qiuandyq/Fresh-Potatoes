@@ -1,11 +1,49 @@
 {% extends "homepage/base.html" %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/watchlater.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="container">
-    <h1 style="text-align: left;font-size: 20;color: var(--white);">My Potato Farm</h1>
-    <a href="{% url 'farmedit' %}" class="header-btn">Edit</a>
+<div class="container" id="watchlater-container">
+    <h1>My Potato Farm</h1>
+    <a href="{% url 'farmedit' %}" class="header-btn" id="watchlater-edit">Edit</a>
+    <div class="container" id="watchlater-results">
+        {% for item in watchlater_list %}
+            {% if forloop.counter0|divisibleby:6 %}
+            <div class="row">
+            {% endif %}
+            {% if forloop.counter0|divisibleby:2 %}
+            <div class="col-md-4">
+                <div class="row">
+            {% endif %}
+            <div class="col-6 watchlater-items">
+                <a href="../more_info/{{item.media_type}}/{{ item.id }}"><img src="{{item.poster_path}}"><h5>{{item.title}}</h5></a>
+            </div>
+            {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
+            </div>
+            {% endif %}
+
+            <!--if last closing div statements arent printed, then print-->
+            {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                </div>
+            </div>
+            {% endif %}
+            {% if forloop.last and not forloop.counter|divisibleby:6 %}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% if not watchlater_list %}
+            <h3 id="watchlater-empty-msg">No items saved</h3>
+        {% endif %}
+    </div>  
+    
 </div>
 
 {% endblock %}

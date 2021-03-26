@@ -1,0 +1,54 @@
+#watchlater-container {
+    margin-top: 60px;
+}
+
+#watchlater-container h1 {
+    color: white;
+    text-align: center;
+}
+
+#watchlater-edit {
+    position: relative;
+    top: -60px;
+    margin: 10px 15px 0 0;
+}
+
+#watchlater-results {
+    margin-top: 60px;
+}
+
+.watchlater-items img {
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: -4px 4px 5px 0 #000;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.watchlater-items h5 {
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    height: fit-content;
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+#watchlater-empty-msg {
+    color: #ccc;
+    text-align: center;
+}

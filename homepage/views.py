@@ -5,6 +5,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
 from .forms import SearchForm
+from users.models import Profile, WatchLaterEntry
 
 # Create your views here.
 def homepage(request):
@@ -227,13 +228,51 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "provider_link":provider,
         'providers': service_providers,
         'genres':item['genres'],
+        "media_type":media_type
     }   
     
 
     return render(request, 'homepage/more_info.html', context )
 
 def farm(request):
-    return render(request, 'homepage/potato_farm.html' )
+    # get user data and watch later list
+    profile = Profile.objects.get(user=request.user)
+    watchlater_list = []
+    
+    # get details for each item
+    for item in profile.watchlater.all():
+        entry = {
+            'title': item.title,
+            'media_type': item.media_type,
+            'id': item.movie_id,
+            'poster_path': api.get_details(item.media_type, item.movie_id)['poster_path']
+        }
+        watchlater_list.append(entry)
+    
+    context = {
+        'watchlater_list': watchlater_list
+    }
+    
+    return render(request, 'homepage/potato_farm.html', context)
 
 def farmedit(request):
     return render(request, 'homepage/potato_farm_edit.html' )
+
+def add_watch_later(request, media_type, movie_id):
+    profile = Profile.objects.get(user=request.user)
+    entry = WatchLaterEntry(title=api.get_details(media_type, movie_id)['title'], media_type=media_type, movie_id=movie_id)
+    entry.save()
+    duplicate = False
+    for item in profile.watchlater.all():
+        if item.movie_id == entry.movie_id:
+            duplicate = True
+
+    if duplicate == False:
+        profile.watchlater.add(entry)
+    else:
+        entry.delete()
+    context = {
+        'media_type': media_type,
+        'movie_id': movie_id,
+    }
+    return render(request, 'homepage/add_watch_later.html', context)

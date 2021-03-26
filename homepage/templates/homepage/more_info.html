@@ -33,8 +33,9 @@
                     {% else %}
                         <a class="watch-btn"><i class="fa fa-frown-o" aria-hidden="true"></i>CA Streaming Site Unavailable</a>
                     {% endif %}
-
-                    
+                    {% if user.is_authenticated %}
+                        <a class="watch-btn" href="../../../add_watch_later/{{media_type}}/{{id}}"><i class="fa fa-plus" aria-hidden="true"></i>Watch Later</a>
+                    {% endif %}
                     
                 </div>
             </div>
