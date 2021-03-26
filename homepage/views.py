@@ -212,7 +212,12 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         else:
             runtime = str(runtime)[1:3]
 
-
+    # check if movie is already added to watch later list
+    watchlater_list = Profile.objects.get(user=request.user).watchlater.all()
+    exists_watchlater = False
+    for i in watchlater_list:
+        if i.movie_id == movie_id:
+            exists_watchlater = True
   
 
     context = {
@@ -228,7 +233,8 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "provider_link":provider,
         'providers': service_providers,
         'genres':item['genres'],
-        "media_type":media_type
+        "media_type":media_type,
+        "exists_watchlater": exists_watchlater
     }   
     
 
