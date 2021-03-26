@@ -33,6 +33,14 @@
             </div>
             <div class="col-md-6 text-right">
                 <img src="{{poster_path}}" class="movie-img"> 
+                <form method= "post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class= "form-group">
+                            <br>
+                            
+                            <button class="btn btn-outline-info" type="submit" > Add to Liked Movies </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -5,7 +5,13 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
 from .forms import SearchForm
+import logging
+from django.contrib.auth.models import User
+from users.models import Profile
+from users.forms import AddToMoviesForm
+from django.contrib import messages
 
+logger = logging.getLogger("mylogger")
 # Create your views here.
 def homepage(request):
     
@@ -210,9 +216,6 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         else:
             runtime = str(runtime)[1:3]
 
-
-  
-
     context = {
         "id": item['id'],
         "title": title,
@@ -228,5 +231,24 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
 
     }
     
+
+    # grabs old movie list however it fetches its string so need to remove these characters [] ' "
+    if request.method == 'POST':
+        post_value = request.POST.copy()
+        profile = request.user.profile
+        tv = profile.tv
+        tv = tv.replace('\'', '').replace('[', '').replace(']', '')
+        movies = profile.movies
+        movies = movies.replace('\'', '').replace('[', '').replace(']', '')  
+        strMovie = str(movie_id) + ', ' + movies
+        post_value['movies'] = strMovie
+
+        logger.info(request.POST)
+        form = AddToMoviesForm(post_value, instance = request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Updated')
+            return redirect('profile')
+
 
     return render(request, 'homepage/more_info.html', context )
