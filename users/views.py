@@ -25,11 +25,14 @@ def register(request):
 @login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    poster = []
+    movie_details = []
     for item in profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
         if item:
-            movie_details = api.get_details("movie", int(item))
-            poster.append(movie_details['poster_path'])
+            temp = {
+                'poster_path': api.get_details("movie", int(item))['poster_path'],
+                'id': int(item)
+            }
+            movie_details.append(temp)
     genres = []
     for item in profile.genre.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
         if item:
@@ -42,8 +45,7 @@ def profile(request):
             services.append(item)
 
     context = {
-
-        'movies':poster,
+        'movies':movie_details,
         'genre':genres,
         'services':services,
     }
