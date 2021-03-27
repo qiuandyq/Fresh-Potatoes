@@ -68,7 +68,7 @@ def survey(request):
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Updated')
-            return redirect('home')
+            return redirect('profile')
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
