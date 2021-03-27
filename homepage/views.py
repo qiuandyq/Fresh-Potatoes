@@ -226,9 +226,11 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
     message = ""
     if request.GET.get('action') == "ADD":
         action = True
+        print(f"Adding movie {item['id']} to watchlater list")
         message = """Movie successfully added, check it out <a href="/farm">here</a>"""
     elif request.GET.get('action') == "REMOVE":
         action = True
+        print(f"Removing movie {item['id']} to watchlater list")
         message = """Movie successfully removed, check it out <a href="/farm">here</a>"""
 
     context = {

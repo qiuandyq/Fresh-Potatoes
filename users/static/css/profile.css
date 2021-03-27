@@ -1,0 +1,21 @@
+.profile-detailed-view
+{
+    margin: 3% 20;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    color: white;
+}
+
+.profile-detailed-view h1
+{
+    padding-bottom: 20px;
+}
+
+.liked-movies img
+{
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: -4px 4px 5px 0 #000;
+    cursor: pointer;
+    transition: 1s;
+}

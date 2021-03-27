@@ -92,9 +92,9 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                         {% if exists_watchlater %}
-                        <a class="watch-btn" href="../../../remove_watch_later/{{media_type}}/{{id}}/more_info/"><i class="fa fa-times" aria-hidden="true"></i>Remove from Farm</a>
+                        <a class="watch-btn" href="/remove_watch_later/{{media_type}}/{{id}}/more_info/"><i class="fa fa-times" aria-hidden="true"></i>Remove from Farm</a>
                         {% else %}
-                        <a class="watch-btn" href="../../../add_watch_later/{{media_type}}/{{id}}/"><i class="fa fa-plus" aria-hidden="true"></i>Add to Farm</a>
+                        <a class="watch-btn" href="/add_watch_later/{{media_type}}/{{id}}/"><i class="fa fa-plus" aria-hidden="true"></i>Add to Farm</a>
                         {% endif %}
                     {% endif %}
                     
