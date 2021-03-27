@@ -11,10 +11,10 @@ body
 {
     position: relative;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.8), 30%, rgba(13,71,161,0.98), 80%, rgba(0,0,0,1)),url('https://www.themoviedb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg');
-    /* background-image: linear-gradient(45deg, rgba(0,0,0,1), 60%, rgba(13,71,161 ,1)); */
-    background-position: center;
-    background-size: cover;
+    background-image: linear-gradient(rgba(0,0,0,0.8) 10%, rgba(0,39,89,0.95) 50%, rgba(0,0,0,1)),url('/static/img/background.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100%;
     background-color: #333;
 }
 
