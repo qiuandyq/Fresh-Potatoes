@@ -1,10 +1,67 @@
 {% extends "homepage/base.html" %}
 {% load static %}
+
+
 {% block content %}
 
 
 <div id="content-wrap">
     <div class="container movie-detailed-view">
+        {% if action %}
+        <!-- Trigger/Open The Modal -->
+        <style>
+            .modal {
+                display:block;
+                position: absolute; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 50%;
+                transform: translate(-50%, 0);
+                top: 130px;
+                width: max-content; /* Full width */
+                height: max-content; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+            }
+            
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                padding: 10px 20px 5px 20px;
+                border: 1px solid #888;
+            }
+            
+            /* The Close Button */
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                position: relative;
+                top: -2px;
+            }
+            
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
+        <div id="watch-laterModal" class="modal">
+            <div class="modal-content" >
+                <p style="color: black; margin:auto;">{{message|safe}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="close">&times;</span></p>
+            </div>
+        </div>
+        <script>
+                            
+            var modal = document.getElementById("watch-laterModal");
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+        </script>
+        {% endif %}
         <div class="row">
             <div class="col-md-6 left-box">
                 <h1>{{title}}</h1>
@@ -35,9 +92,9 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                         {% if exists_watchlater %}
-                        <a class="watch-btn" href="../../../remove_watch_later/{{media_type}}/{{id}}"><i class="fa fa-times" aria-hidden="true"></i>Remove from Farm</a>
+                        <a class="watch-btn" href="../../../remove_watch_later/{{media_type}}/{{id}}/more_info/"><i class="fa fa-times" aria-hidden="true"></i>Remove from Farm</a>
                         {% else %}
-                        <a class="watch-btn" href="../../../add_watch_later/{{media_type}}/{{id}}"><i class="fa fa-plus" aria-hidden="true"></i>Add to Farm</a>
+                        <a class="watch-btn" href="../../../add_watch_later/{{media_type}}/{{id}}/"><i class="fa fa-plus" aria-hidden="true"></i>Add to Farm</a>
                         {% endif %}
                     {% endif %}
                     

@@ -6,6 +6,7 @@ sys.path.append(parentdir)
 import api.api_get as api
 from .forms import SearchForm
 from users.models import Profile, WatchLaterEntry
+from django.http import HttpResponse
 
 # Create your views here.
 def homepage(request):
@@ -219,7 +220,16 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         for i in watchlater_list:
             if i.movie_id == movie_id:
                 exists_watchlater = True
-  
+
+    # check if movie has just been added and display message
+    action = False
+    message = ""
+    if request.GET.get('action') == "ADD":
+        action = True
+        message = """Movie successfully added, check it out <a href="/farm">here</a>"""
+    elif request.GET.get('action') == "REMOVE":
+        action = True
+        message = """Movie successfully removed, check it out <a href="/farm">here</a>"""
 
     context = {
         "id": item['id'],
@@ -235,7 +245,9 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         'providers': service_providers,
         'genres':item['genres'],
         "media_type":media_type,
-        "exists_watchlater": exists_watchlater
+        "exists_watchlater": exists_watchlater,
+        "action": action,
+        "message": message
     }   
     
 
@@ -300,12 +312,13 @@ def add_watch_later(request, media_type, movie_id):
         'media_type': media_type,
         'movie_id': movie_id,
     }
-    return render(request, 'homepage/add_watch_later.html', context)
+    return HttpResponse(""f"<html><script>window.location.replace('/more_info/{media_type}/{movie_id}/?action=ADD');</script></html>""")
 
-def remove_watch_later(request, media_type, movie_id):
+def remove_watch_later(request, media_type, movie_id, source):
     profile = Profile.objects.get(user=request.user)
     if media_type == "all":
         profile.watchlater.all().delete()
+        return HttpResponse(""f"<html><script>window.location.replace('/farm/');</script></html>""")
     else:
         exists = False
         for item in profile.watchlater.all():
@@ -316,4 +329,6 @@ def remove_watch_later(request, media_type, movie_id):
         'media_type': media_type,
         'movie_id': movie_id,
     }
-    return render(request, 'homepage/remove_watch_later.html', context)
+    if source == "farmedit":
+        return HttpResponse(""f"<html><script>window.location.replace('/farmedit/');</script></html>""")
+    return HttpResponse(""f"<html><script>window.location.replace('/more_info/{media_type}/{movie_id}/?action=REMOVE');</script></html>""")

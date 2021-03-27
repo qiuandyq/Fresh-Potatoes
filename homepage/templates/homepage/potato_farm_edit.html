@@ -10,7 +10,7 @@
 <div class="container" id="watchlater-container">
     <h1>My Potato Farm</h1>
     <a href="{% url 'farm' %}" onclick="location.replace(document.referrer);" class="header-btn" id="watchlater-edit">Back</a>
-    <a href="../remove_watch_later/all/0" class="header-btn" id="watchlater-edit">Remove All</a>
+    <a href="../remove_watch_later/all/0/farmedit" class="header-btn" id="watchlater-edit">Remove All</a>
     <div class="container" id="watchlater-results">
         {% for item in watchlater_list %}
             {% if forloop.counter0|divisibleby:6 %}
@@ -25,7 +25,7 @@
                     <img src="{{item.poster_path}}">
                     <h5>{{item.title}}</h5>
                 </a>
-                <a href="../remove_watch_later/{{item.media_type}}/{{item.id}}" class="header-btn watchlater-remove-item">
+                <a href="../remove_watch_later/{{item.media_type}}/{{item.id}}/farmedit" class="header-btn watchlater-remove-item">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
             </div>

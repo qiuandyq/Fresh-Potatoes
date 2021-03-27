@@ -61,3 +61,7 @@
     top: -15px;
     right: 0;
 }
+
+.watchlater-remove-item i {
+    font-size: 20px;
+}
