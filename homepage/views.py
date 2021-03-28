@@ -38,8 +38,13 @@ def homepage(request):
     if request.user.is_authenticated:
         #get the reccomended movies
         profile = request.user.profile
-        movies = profile.movies.split(",")
+        movies = profile.movies
+        print(movies)
+        movies = movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(',')
+        print(movies)
+        print(movies)
         del movies[-1]
+        # print(movies)
         movies = [int(x) for x in movies]
         genres = profile.genre
 
