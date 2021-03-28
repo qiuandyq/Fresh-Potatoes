@@ -2,8 +2,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import UsernameField
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, ProfileUpdateForm
 from .models import Profile
+from django.contrib.auth.models import User
+from .forms import UserRegisterForm, ProfileUpdateForm, AddToMoviesForm
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -61,12 +62,12 @@ def profile(request):
 @login_required
 def survey(request):
     if request.method == 'POST':
+        logger.info(request.POST)
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
-        post = request.POST.copy()
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Updated')
-            return redirect('profile')
+            return redirect('survey_movies')
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
@@ -74,12 +75,82 @@ def survey(request):
 
 @login_required
 def survey_movies(request):
-    search = SearchForm()
-    if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            print(title)
-            return redirect('home')
 
-    return render(request, 'users/survey_movies.html', {'search': search})
+    # defining the search and putting it into context
+    query = request.GET.get('search')
+    if query is None:
+        query = ""
+
+    if query != "" :
+        # fill results in categories
+        context = {
+            "query": query,
+            "movie_results": api.search_movie_id(query)['results'],
+            "tv_results": api.search_tv_id(query)['results']
+        }
+    else :
+        context = {
+            "query": query,
+            "movie_results": {},
+            "tv_results": {}
+        }
+
+    for item in context['movie_results']:
+        item['poster_path'] = api.get_details("movie", item['id'])['poster_path']
+    for item in context['tv_results']:
+        item['poster_path'] = api.get_details("tv", item['id'])['poster_path']
+    
+    # grabs old movie list however it fetches its string so need to remove these characters [] ' "
+    profile = request.user.profile
+    tv = profile.tv
+    tv = tv.replace('\'', '').replace('[', '').replace(']', '')
+    movies = profile.movies
+    movies = movies.replace('\'', '').replace('[', '').replace(']', '')
+
+    logger.info(request.POST)
+
+    if request.method == 'POST':
+        post_value = request.POST.copy()
+        selectedValues = str(post_value)
+
+        # finds string movies and returns index, if not found then return -1
+        try:
+            indMov = selectedValues.index('movies\':')
+        except ValueError:
+            indMov = -1
+        # finds string tv and returns index, if not found then return -1
+        try:
+            indTV = selectedValues.index('tv\':')
+        except ValueError:
+            indTV = -1
+
+        # if the index of string isnt one, then remove the following characters from the string []'"
+        if indMov != -1:
+            strMovie = selectedValues[indMov + 7:indTV].replace('\'', '').replace('[', '').replace(']', '').replace(':', '').replace('>', '').replace('}', '')
+            logger.info(strMovie)
+        if indTV != -1:
+            strTV = selectedValues[indTV + 3:].replace('\'', '').replace('[', '').replace(']', '').replace(':', '').replace('>', '').replace('}', '')
+            logger.info(strTV)
+
+        # checks if a movie has been selected
+        if indMov != -1:
+            strMovie = strMovie + ', ' + movies
+        else:
+            strMovie = movies
+
+        post_value['movies'] = strMovie
+        
+        #checks if a tv show has been selected
+        if indTV != -1:
+            strTV = strTV + ', ' + tv
+            post_value['tv'] = strTV
+        else:
+            strTV = tv
+
+        form = AddToMoviesForm(post_value, instance = request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Updated')
+            return redirect('profile')
+
+    return render(request, 'users/survey_movies.html', {'context': context})

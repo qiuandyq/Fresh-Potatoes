@@ -91,6 +91,22 @@
                 {% if not movies %}
                     <h6 style="text-align: center; color: grey">Please select movies from the survey</h6>
                 {% endif %}
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            Liked TV Shows: <h3>{{ user.profile.tv }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            <a href="{% url 'survey' %}">Complete our survey to get recommended movies! </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mt-3">
+                            <a href="{% url 'survey_movies' %}">Add more movies or TV shows to your liked list! </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

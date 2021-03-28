@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -7,7 +7,13 @@ import api.api_get as api
 from .forms import SearchForm
 from users.models import Profile, WatchLaterEntry
 from django.http import HttpResponse
+import logging
+from django.contrib.auth.models import User
+from users.forms import AddToMoviesForm, ProfileUpdateForm
+from django.contrib import messages
 
+
+logger = logging.getLogger("mylogger")
 # Create your views here.
 def homepage(request):
     
@@ -27,6 +33,30 @@ def homepage(request):
                                         # to match the first part of the more_info path in urls.py 
 
     }
+    
+
+    if request.user.is_authenticated:
+        #get the reccomended movies
+        profile = request.user.profile
+        movies = profile.movies.split(",")
+        del movies[-1]
+        movies = [int(x) for x in movies]
+        genres = profile.genre
+
+        reco_movies = api.get_recommendation('movie',movies)
+        counter = 1
+        for i in reco_movies:
+            curr_movie = api.get_details('movie',int(i))
+            
+            context[f'for_you{counter}'] = {
+                "title": curr_movie['title'],
+                "overview": curr_movie['overview'],
+                "poster_path": curr_movie['poster_path'], 
+                "id": curr_movie['id'], # get the movie's id so we can use it in our href later
+            }
+            counter = counter +1
+
+    counter = 1
     for item in api.get_trending('movie', 'week')['results']:
         context[f'trending_movie{counter}'] = {
             "title": item['title'],
@@ -45,7 +75,7 @@ def homepage(request):
             "id": item['id'],
         }
         counter = counter + 1
-
+    
     counter = 1
     for item in api.get_upcoming()['results']:
         
@@ -191,9 +221,11 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
  #assigning correct name for titles
     if media_type=='movie':
         title=item['title']
+        liked_list= "Liked Movies"
 
     if media_type=='tv':
         title=item['name']
+        liked_list= "Liked TV Shows"
 
     #assigning correct name for release dates
     if media_type=='movie':
@@ -249,11 +281,52 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "media_type":media_type,
         "exists_watchlater": exists_watchlater,
         "action": action,
-        "message": message
+        "message": message,
+        'liked_list': liked_list
     }   
     
+    # grabs old movie list however it fetches its string so need to remove these characters [] ' "
+    if request.method == 'POST':
+        post_value = request.POST.copy()
+        profile = request.user.profile
 
+        tv = profile.tv
+        tv = tv.replace('\'', '').replace('[', '').replace(']', '')
+
+        if media_type=='tv':
+            strTV = str(movie_id) + ', ' + tv
+            post_value['tv'] = strTV
+            #return redirect(f'/../FAQ/')
+        else:
+            tv = profile.tv 
+            post_value['tv']= tv 
+
+        movies = profile.movies
+        movies = movies.replace('\'', '').replace('[', '').replace(']', '')  
+
+        if media_type=='movie':
+            strMovie = str(movie_id) + ', ' + movies
+            post_value['movies'] = strMovie
+        else:
+            movies=profile.movies
+            post_value['movies']=movies
+
+        logger.info(request.POST)
+        form = AddToMoviesForm(post_value, instance = request.user.profile)
+     
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Updated')
+            return redirect(f'/../added_done/{media_type}/{movie_id}/')
+
+        #for movie in post_value['tv']:
+         #   print(movie)
+
+        
     return render(request, 'homepage/more_info.html', context )
+
+
 
 def farm(request):
     # get user data and watch later list
@@ -334,3 +407,30 @@ def remove_watch_later(request, media_type, movie_id, source):
     if source == "farmedit":
         return HttpResponse(""f"<html><script>window.location.replace('/farmedit/');</script></html>""")
     return HttpResponse(""f"<html><script>window.location.replace('/more_info/{media_type}/{movie_id}/?action=REMOVE');</script></html>""")
+    
+
+
+
+
+def movie_added(request, media_type , movie_id):
+    item = api.get_details(media_type, int(movie_id))
+
+    if media_type=='movie':
+        title=item['title']
+        header="Movie"
+
+    if media_type=='tv':
+        title=item['name']
+        header= "TV show"
+
+    context = {
+
+        "title": title,
+        "poster_path": item['poster_path'], 
+        "id":movie_id,
+        "type":media_type,
+        "header":header,
+
+    }
+
+    return render(request, 'homepage/added_movie_done.html', context)
