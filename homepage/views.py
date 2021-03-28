@@ -31,6 +31,43 @@ def homepage(request):
                                         # to match the first part of the more_info path in urls.py 
 
     }
+    
+
+    if request.user.is_authenticated:
+        #get the reccomended movies
+        profile = request.user.profile
+        movies = profile.movies.split(",")
+        del movies[-1]
+        movies = [int(x) for x in movies]
+        genres = profile.genre
+        print(genres)
+        print(type(genres))
+        #genres = [int(x) for x in genres]
+
+        reco_movies = api.get_recommendation('movie',movies)
+        counter = 1
+        for i in reco_movies:
+            curr_movie = api.get_details('movie',int(i))
+            
+            context[f'for_you{counter}'] = {
+                "title": curr_movie['title'],
+                "overview": curr_movie['overview'],
+                "poster_path": curr_movie['poster_path'], 
+                "id": curr_movie['id'], # get the movie's id so we can use it in our href later
+            }
+            counter = counter +1
+
+        # for i in genres:
+        #     curr_movie = api.get_genre(,)
+            
+        #     context[f'for_you{counter}'] = {
+        #         "title": curr_movie['title'],
+        #         "overview": curr_movie['overview'],
+        #         "poster_path": curr_movie['poster_path'], 
+        #         "id": curr_movie['id'], # get the movie's id so we can use it in our href later
+        #     }
+        #     counter = counter +1
+    counter = 1
     for item in api.get_trending('movie', 'week')['results']:
         context[f'trending_movie{counter}'] = {
             "title": item['title'],
@@ -49,7 +86,7 @@ def homepage(request):
             "id": item['id'],
         }
         counter = counter + 1
-
+    
     counter = 1
     for item in api.get_upcoming()['results']:
         
