@@ -33,6 +33,16 @@
             </div>
             <div class="col-md-6 text-right">
                 <img src="{{poster_path}}" class="movie-img"> 
+                {% if user.is_authenticated %}
+                <form method= "post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class= "form-group">
+                            <br>
+                            
+                            <button class="btn btn-outline-info" type="submit" > Add to {{liked_list}} </button>
+                    </div>
+                </form>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -53,12 +63,15 @@
                
             {% for key, value in providers.items %}
             {% if key == 'rent' and value.items %}
+            <br>
             <h5 style="color:grey"> Rent: </h5>
             {% endif %}
             {% if key == 'stream' and value.items %}
+            <br>
             <h5 style="color:grey"> Stream: </h5>
             {% endif %}
             {% if key == 'buy' and value.items %}
+            <br>
             <h5 style="color:grey"> Buy: </h5>
             {% endif %}
 
@@ -66,7 +79,7 @@
                 {% for key, value in value.items %} 
                 
                 <div class= "col-md-1">
-                    <img src="{{value.logo}}" class="provider-icon" alt="Avatar">                                 
+                    <a><img src="{{value.logo}}" class="provider-icon" alt="Avatar">  <small style=" color: rgb(172, 169, 169)"> {{value.name}} </small>    </a>
                 </div>
                 
                 

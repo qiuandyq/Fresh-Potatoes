@@ -18,6 +18,41 @@
             </div>
         </div>
         <div>
+            {% if user.is_authenticated %}
+            <!--First row of movies-->
+            <div class="container series">
+                <h3>For You</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you1.id}}"><img src="{{for_you1.poster_path}}"><h5>{{for_you1.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you2.id}}"><img src="{{for_you2.poster_path}}"><h5>{{for_you2.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you3.id}}"><img src="{{for_you3.poster_path}}"><h5>{{for_you3.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you4.id}}"><img src="{{for_you4.poster_path}}"><h5>{{for_you4.title}} </h5></div></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you5.id}}"><img src="{{for_you5.poster_path}}"><h5>{{for_you5.title}} </h5></div></a>
+                            <div class="col-6">
+                                <a href="{{info_url}}/movie/{{for_you6.id}}"><img src="{{for_you6.poster_path}}"><h5>{{for_you6.title}} </h5></div></a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            {% endif %}
             <!--First row of movies-->
             <div class="container series">
                 <h3>Popular Movies</h3>
@@ -82,7 +117,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!--Third row of movies-->
             <div class="container series">
                 <h3>Upcoming</h3>
