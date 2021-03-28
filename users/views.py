@@ -1,7 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.forms import UsernameField
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileUpdateForm
+from .models import Profile
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -28,7 +30,32 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    profile = Profile.objects.get(user=request.user)
+    movie_details = []
+    for item in profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        if item:
+            temp = {
+                'poster_path': api.get_details("movie", int(item))['poster_path'],
+                'id': int(item)
+            }
+            movie_details.append(temp)
+    genres = []
+    for item in profile.genre.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        if item:
+            for genre in api.get_genre("movie")['genres']:
+                if int(item) == int(genre['id']):
+                    genres.append(genre['name'])
+    services = []
+    for item in profile.stream.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        if item:
+            services.append(item)
+
+    context = {
+        'movies':movie_details,
+        'genre':genres,
+        'services':services,
+    }
+    return render(request, 'users/profile.html', context)
 
 
 @login_required
@@ -39,7 +66,7 @@ def survey(request):
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Updated')
-            return redirect('home')
+            return redirect('profile')
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
 

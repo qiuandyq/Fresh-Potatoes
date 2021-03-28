@@ -23,10 +23,13 @@ class ProfileUpdateForm(forms.ModelForm):
     context = {}
     for item in api.get_popular('movie')['results']:
         context[f'popular_movie{counter}'] = {
-            "id": item['id'],
-            "poster_path": item['poster_path'] 
+            "title": item['title'],
+            "poster_path": item['poster_path'],
+            "id":item['id'],
         }
         counter = counter + 1
+
+    
 
     MOVIES = (
         (context['popular_movie0']['id'], context['popular_movie0']['poster_path']),
@@ -41,30 +44,30 @@ class ProfileUpdateForm(forms.ModelForm):
     )
 
     GENRES = (
-        ('28', 'Action'),
-        ('12', 'Adventure'),
-        ('16', 'Animation'),
-        ('35', 'Comedy'),
-        ('80', 'Crime'),
-        ('99', 'Documentary'),
-        ('18', 'Drama'),
-        ('10751', 'Family'),
-        ('14', 'Fantasy'),
-        ('36', 'History'),
-        ('27', 'Horror'),
-        ('10402', 'Music'),
-        ('9648', 'Mystery'),
-        ('10749', 'Romance'),
-        ('878', 'Science Fiction'),
-        ('10770', 'TV Movie'),
-        ('53', 'Thriller'),
-        ('10752', 'War'),
-        ('37', 'Western'),
+        (28, 'Action'),
+        (12, 'Adventure'),
+        (16, 'Animation'),
+        (35, 'Comedy'),
+        (80, 'Crime'),
+        (99, 'Documentary'),
+        (18, 'Drama'),
+        (10751, 'Family'),
+        (14, 'Fantasy'),
+        (36, 'History'),
+        (27, 'Horror'),
+        (10402, 'Music'),
+        (9648, 'Mystery'),
+        (10749, 'Romance'),
+        (878, 'Science Fiction'),
+        (10770, 'TV Movie'),
+        (53, 'Thriller'),
+        (10752, 'War'),
+        (37, 'Western'),
     )
 
     SERVICES = (
         ('Netflix', 'Netflix'),
-        ('Prime Video', 'Prime Video'),
+        ("Prime Video", 'Prime Video'),
         ('Crave TV', 'Crave TV'),
         ('Hulu', 'Hulu'),
         ('Disney+', 'Disney+'),

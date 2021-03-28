@@ -1,0 +1,10 @@
+{% extends "homepage/base.html" %}
+
+{% block head %}
+<!--
+<meta http-equiv="refresh" content="0; URL='../../../more_info/{{media_type}}/{{movie_id}}'"/>
+-->
+<script defer>
+    location.replace(document.referrer);
+</script>
+{% endblock %}

@@ -5,6 +5,8 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 import api.api_get as api
 from .forms import SearchForm
+from users.models import Profile, WatchLaterEntry
+from django.http import HttpResponse
 
 # Create your views here.
 def homepage(request):
@@ -61,6 +63,7 @@ def homepage(request):
 
 def about(request):
     return render(request, 'homepage/about.html')
+
 
 def faq(request):
     faqs=[
@@ -210,8 +213,25 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         else:
             runtime = str(runtime)[1:3]
 
+    # check if movie is already added to watch later list
+    exists_watchlater = False
+    if request.user.is_authenticated:
+        watchlater_list = Profile.objects.get(user=request.user).watchlater.all()
+        for i in watchlater_list:
+            if i.movie_id == movie_id:
+                exists_watchlater = True
 
-  
+    # check if movie has just been added and display message
+    action = False
+    message = ""
+    if request.GET.get('action') == "ADD":
+        action = True
+        print(f"Adding movie {item['id']} to watchlater list")
+        message = """Movie successfully added, check it out <a href="/farm">here</a>"""
+    elif request.GET.get('action') == "REMOVE":
+        action = True
+        print(f"Removing movie {item['id']} to watchlater list")
+        message = """Movie successfully removed, check it out <a href="/farm">here</a>"""
 
     context = {
         "id": item['id'],
@@ -224,9 +244,93 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "rating":item['vote_average'],
         "trailer":trailer,
         "provider_link":provider,
-        'providers': service_providers
-
-    }
+        'providers': service_providers,
+        'genres':item['genres'],
+        "media_type":media_type,
+        "exists_watchlater": exists_watchlater,
+        "action": action,
+        "message": message
+    }   
     
 
     return render(request, 'homepage/more_info.html', context )
+
+def farm(request):
+    # get user data and watch later list
+    profile = Profile.objects.get(user=request.user)
+    watchlater_list = []
+    
+    # get details for each item
+    for item in profile.watchlater.all():
+        entry = {
+            'title': item.title,
+            'media_type': item.media_type,
+            'id': item.movie_id,
+            'poster_path': api.get_details(item.media_type, item.movie_id)['poster_path']
+        }
+        watchlater_list.append(entry)
+    
+    context = {
+        'watchlater_list': watchlater_list
+    }
+    
+    return render(request, 'homepage/potato_farm.html', context)
+
+def farmedit(request):
+    # get user data and watch later list
+    profile = Profile.objects.get(user=request.user)
+    watchlater_list = []
+    
+    # get details for each item
+    for item in profile.watchlater.all():
+        entry = {
+            'title': item.title,
+            'media_type': item.media_type,
+            'id': item.movie_id,
+            'poster_path': api.get_details(item.media_type, item.movie_id)['poster_path']
+        }
+        watchlater_list.append(entry)
+    
+    context = {
+        'watchlater_list': watchlater_list
+    }
+    
+    return render(request, 'homepage/potato_farm_edit.html', context)
+
+def add_watch_later(request, media_type, movie_id):
+    profile = Profile.objects.get(user=request.user)
+    entry = WatchLaterEntry(title=api.get_details(media_type, movie_id)['title'], media_type=media_type, movie_id=movie_id)
+    entry.save()
+    duplicate = False
+    for item in profile.watchlater.all():
+        if item.movie_id == entry.movie_id:
+            duplicate = True
+
+    if duplicate == False:
+        profile.watchlater.add(entry)
+    else:
+        entry.delete()
+    context = {
+        'media_type': media_type,
+        'movie_id': movie_id,
+    }
+    return HttpResponse(""f"<html><script>window.location.replace('/more_info/{media_type}/{movie_id}/?action=ADD');</script></html>""")
+
+def remove_watch_later(request, media_type, movie_id, source):
+    profile = Profile.objects.get(user=request.user)
+    if media_type == "all":
+        profile.watchlater.all().delete()
+        return HttpResponse(""f"<html><script>window.location.replace('/farm/');</script></html>""")
+    else:
+        exists = False
+        for item in profile.watchlater.all():
+            if item.movie_id == movie_id:
+                item.delete()
+                exists = True
+    context = {
+        'media_type': media_type,
+        'movie_id': movie_id,
+    }
+    if source == "farmedit":
+        return HttpResponse(""f"<html><script>window.location.replace('/farmedit/');</script></html>""")
+    return HttpResponse(""f"<html><script>window.location.replace('/more_info/{media_type}/{movie_id}/?action=REMOVE');</script></html>""")

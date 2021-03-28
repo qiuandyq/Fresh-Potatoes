@@ -11,9 +11,10 @@ body
 {
     position: relative;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url('/static/img/TheAvengers.jpg');
-    background-position: center;
-    background-size: cover;
+    background-image: linear-gradient(rgba(0,0,0,0.8) 10%, rgba(0,39,89,0.95) 50%, rgba(0,0,0,1)),url('/static/img/background.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100%;
     background-color: #333;
 }
 
@@ -100,7 +101,7 @@ body
     margin: 25px 0;
 }
 
-/*Featured movie watch btn, not implemented*/
+/* style for all buttons */
 .watch-btn
 {
     border: 1px solid #fff !important;
@@ -257,7 +258,7 @@ body
 
 .about-section
 {
-    margin-top: 200px;
+    margin-top: 50px;
     margin-left: 500px;
     margin-right: 500px;
 }
