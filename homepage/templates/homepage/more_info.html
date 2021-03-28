@@ -33,14 +33,16 @@
             </div>
             <div class="col-md-6 text-right">
                 <img src="{{poster_path}}" class="movie-img"> 
+                {% if user.is_authenticated %}
                 <form method= "post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class= "form-group">
                             <br>
                             
-                            <button class="btn btn-outline-info" type="submit" > Add to Liked Movies </button>
+                            <button class="btn btn-outline-info" type="submit" > Add to {{liked_list}} </button>
                     </div>
                 </form>
+                {% endif %}
             </div>
         </div>
     </div>

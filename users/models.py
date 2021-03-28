@@ -6,7 +6,7 @@ class Profile(models.Model):
     dob = models.DateField("Date of Birth", blank=True, null=True)
     genre = models.CharField(max_length=300, default="")
     stream = models.CharField(max_length=300, default="")
-    movies = models.CharField(max_length=1000, default="")
+    movies = models.CharField(max_length=1000, default="", blank=True)
     tv = models.CharField(max_length=1000, default="", blank=True)
 
     def __str__(self):

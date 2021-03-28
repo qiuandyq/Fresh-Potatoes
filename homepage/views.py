@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -8,8 +8,9 @@ from .forms import SearchForm
 import logging
 from django.contrib.auth.models import User
 from users.models import Profile
-from users.forms import AddToMoviesForm
+from users.forms import AddToMoviesForm, ProfileUpdateForm
 from django.contrib import messages
+
 
 logger = logging.getLogger("mylogger")
 # Create your views here.
@@ -231,9 +232,11 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
  #assigning correct name for titles
     if media_type=='movie':
         title=item['title']
+        liked_list= "Liked Movies"
 
     if media_type=='tv':
         title=item['name']
+        liked_list= "Liked TV Shows"
 
     #assigning correct name for release dates
     if media_type=='movie':
@@ -264,7 +267,8 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
         "rating":item['vote_average'],
         "trailer":trailer,
         "provider_link":provider,
-        'providers': service_providers
+        'providers': service_providers,
+        'liked_list': liked_list
 
     }
     
@@ -273,19 +277,65 @@ def more_info(request, media_type , movie_id): # takes in movie_id variable from
     if request.method == 'POST':
         post_value = request.POST.copy()
         profile = request.user.profile
+
         tv = profile.tv
         tv = tv.replace('\'', '').replace('[', '').replace(']', '')
+
+        if media_type=='tv':
+            strTV = str(movie_id) + ', ' + tv
+            post_value['tv'] = strTV
+            #return redirect(f'/../FAQ/')
+        else:
+            tv = profile.tv 
+            post_value['tv']= tv 
+
         movies = profile.movies
         movies = movies.replace('\'', '').replace('[', '').replace(']', '')  
-        strMovie = str(movie_id) + ', ' + movies
-        post_value['movies'] = strMovie
+
+        if media_type=='movie':
+            strMovie = str(movie_id) + ', ' + movies
+            post_value['movies'] = strMovie
+        else:
+            movies=profile.movies
+            post_value['movies']=movies
 
         logger.info(request.POST)
         form = AddToMoviesForm(post_value, instance = request.user.profile)
+     
+
         if form.is_valid():
             form.save()
             messages.success(request, f'Updated')
-            return redirect('profile')
+            return redirect(f'/../added_done/{media_type}/{movie_id}/')
 
+        #for movie in post_value['tv']:
+         #   print(movie)
 
+        
     return render(request, 'homepage/more_info.html', context )
+
+
+
+
+def movie_added(request, media_type , movie_id):
+    item = api.get_details(media_type, int(movie_id))
+
+    if media_type=='movie':
+        title=item['title']
+        header="Movie"
+
+    if media_type=='tv':
+        title=item['name']
+        header= "TV show"
+
+    context = {
+
+        "title": title,
+        "poster_path": item['poster_path'], 
+        "id":movie_id,
+        "type":media_type,
+        "header":header,
+
+    }
+
+    return render(request, 'homepage/added_movie_done.html', context)
