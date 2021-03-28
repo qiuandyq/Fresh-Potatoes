@@ -245,6 +245,3 @@ def get_recommendation(media_type,movie_list):
     
 
 
-# test_id_list = [299534,299536]
-# print(get_recommendation('movie',test_id_list))
-# print(get_popular("movie"))

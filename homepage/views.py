@@ -58,16 +58,6 @@ def homepage(request):
             }
             counter = counter +1
 
-        # for i in genres:
-        #     curr_movie = api.get_genre(,)
-            
-        #     context[f'for_you{counter}'] = {
-        #         "title": curr_movie['title'],
-        #         "overview": curr_movie['overview'],
-        #         "poster_path": curr_movie['poster_path'], 
-        #         "id": curr_movie['id'], # get the movie's id so we can use it in our href later
-        #     }
-        #     counter = counter +1
     counter = 1
     for item in api.get_trending('movie', 'week')['results']:
         context[f'trending_movie{counter}'] = {
