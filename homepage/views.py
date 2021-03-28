@@ -41,9 +41,6 @@ def homepage(request):
         del movies[-1]
         movies = [int(x) for x in movies]
         genres = profile.genre
-        print(genres)
-        print(type(genres))
-        #genres = [int(x) for x in genres]
 
         reco_movies = api.get_recommendation('movie',movies)
         counter = 1
