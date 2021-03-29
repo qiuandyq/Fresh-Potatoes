@@ -24,7 +24,7 @@ def get_details(media_type, id):
     if details['poster_path'] != None:
         details['poster_path'] = "https://image.tmdb.org/t/p/w200" + details['poster_path']
     else:
-        details['poster_path'] = "https://i.ibb.co/8KK48QG/image404.jpg"
+        details['poster_path'] = "/static/img/no_poster.png"
     if details['backdrop_path'] != None:
         details['backdrop_path'] = "https://image.tmdb.org/t/p/w500" + details['backdrop_path']
     # rename 'name' key to 'title'
