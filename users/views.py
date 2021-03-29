@@ -32,6 +32,7 @@ def register(request):
 @login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
+    print(profile.movies)
     movie_details = []
     for item in profile.movies.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
         if item:
@@ -133,11 +134,15 @@ def survey_movies(request):
             logger.info(strTV)
 
         # checks if a movie has been selected
+
         if indMov != -1:
             strMovie = strMovie + ', ' + movies
         else:
             strMovie = movies
 
+        strMovie = strMovie.replace(', ,', ',')
+        if strMovie[-1] == ',':
+            strMovie = strMovie[:-1]
         post_value['movies'] = strMovie
         
         #checks if a tv show has been selected
