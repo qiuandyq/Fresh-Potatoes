@@ -40,6 +40,14 @@ def profile(request):
                 'id': int(item)
             }
             movie_details.append(temp)
+    tv_details = []
+    for item in profile.tv.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
+        if item:
+            temp = {
+                'poster_path': api.get_details("tv", int(item))['poster_path'],
+                'id': int(item)
+            }
+            tv_details.append(temp)
     genres = []
     for item in profile.genre.replace(' ','').replace('[','').replace(']','').replace("'",'').split(','):
         if item:
@@ -53,6 +61,7 @@ def profile(request):
 
     context = {
         'movies':movie_details,
+        'tv': tv_details,
         'genre':genres,
         'services':services,
     }
