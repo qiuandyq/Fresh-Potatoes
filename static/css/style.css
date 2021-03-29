@@ -317,3 +317,24 @@ body
 {
     border-radius: 50%;
 }
+
+#liked-button-form {
+    display: inline-block;
+}
+
+#liked-button-form div {
+    margin: 0;
+}
+
+#liked-button-form button {
+    color: white;
+    background: none;
+    text-decoration: none !important;
+    margin-right: 10px;
+    margin-top:35px;
+    padding: 7px 20px;
+    border-radius: 30px;
+    border: 1px solid #fff !important;
+    font-weight: 600;
+    outline: none;
+}

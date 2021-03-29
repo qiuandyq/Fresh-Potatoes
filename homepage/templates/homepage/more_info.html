@@ -63,7 +63,7 @@
         </script>
         {% endif %}
         <div class="row">
-            <div class="col-md-8 left-box">
+            <div class="col-md-9 left-box">
                 <h1>{{title}}</h1>
                 <h4 style="color:white;"><i class="fa fa-calendar" aria-hidden="true"></i>{{release_date}}</h4>
                 <h4 style="color: white;"><i class="fa fa-hourglass-half" aria-hidden="true"></i>{{runtime}} minutes</h4>
@@ -96,22 +96,18 @@
                         {% else %}
                         <a class="watch-btn" href="/add_watch_later/{{media_type}}/{{id}}/"><i class="fa fa-plus" aria-hidden="true"></i>Add to Farm</a>
                         {% endif %}
+                        <form method= "post" enctype="multipart/form-data" id="liked-button-form">
+                            {% csrf_token %}
+                            <div class= "form-group">
+                                <button type="submit" ><i class="fa fa-plus" aria-hidden="true"></i>Add to {{liked_list}}</button>
+                            </div>
+                        </form>
                     {% endif %}
                     
                 </div>
             </div>
-            <div class="col-md-4 text-right">
+            <div class="col-md-3 text-right">
                 <img src="{{poster_path}}" class="movie-img"> 
-                {% if user.is_authenticated %}
-                <form method= "post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class= "form-group">
-                            <br>
-                            
-                            <button class="btn btn-outline-info" type="submit" > Add to {{liked_list}} </button>
-                    </div>
-                </form>
-                {% endif %}
             </div>
         </div>
     </div>
