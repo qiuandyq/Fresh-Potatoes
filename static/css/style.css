@@ -105,8 +105,13 @@ body
 .watch-btn
 {
     border: 1px solid #fff !important;
-    background: transparent !important;
+    background-color: rgba(255,255,255,0);
     display: inline;
+    transition: 0.3s;
+}
+
+.watch-btn:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 /*More info icon position*/
@@ -328,7 +333,7 @@ body
 
 #liked-button-form button {
     color: white;
-    background: none;
+    background-color: rgba(255,255,255,0);
     text-decoration: none !important;
     margin-right: 10px;
     margin-top:35px;
@@ -337,4 +342,9 @@ body
     border: 1px solid #fff !important;
     font-weight: 600;
     outline: none;
+    transition: 0.3s;
+}
+
+#liked-button-form button:hover {
+    background-color: rgba(255,255,255,0.1);
 }
