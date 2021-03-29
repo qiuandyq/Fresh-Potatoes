@@ -93,26 +93,51 @@
                 {% endif %}
                     <div class="row">
                         <div class="col-sm mt-3">
-                            Liked TV Shows: <h3>{{ user.profile.tv }}</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm mt-3">
-                            <a href="{% url 'survey' %}">Complete our survey to get recommended movies! </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm mt-3">
-                            <a href="{% url 'survey_movies' %}">Add more movies or TV shows to your liked list! </a>
+                        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Liked TV shows:</h3>
+                        {% for item in tv %}
+                            {% if forloop.counter0|divisibleby:6 %}
+                            <div class="row">
+                            {% endif %}
+                            {% if forloop.counter0|divisibleby:2 %}
+                            <div class="col-md-4">
+                                <div class="row">
+                            {% endif %}
+                            <div class="col-6 search-items">
+                                <a href="../more_info/tv/{{ item.id }}"><img src="{{ item.poster_path }}"></a>
+                            </div>
+                            {% if forloop.counter|divisibleby:2 and forloop.counter0 > 0 %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if forloop.counter|divisibleby:6 and forloop.counter0 > 0 %}
+                            </div>
+                            {% endif %}
+                
+                            <!--if last closing div statements arent printed, then print-->
+                            {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if forloop.last and not forloop.counter|divisibleby:6 %}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not tv %}
+                        <h6 style="text-align: center; color: grey">Please select TV shows from the survey</h6>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="container" style="text-align: center;">
+                <a href="{% url 'survey' %}" class="btn btn-outline-info" style="text-align: center;color: rgb(255, 255, 255);border: 3px solid rgb(255, 255, 255); margin: 60px 0 15px 0">Complete our survey to get recommended movies! </a>
+            </div>
+            <div class="container" style="text-align: center;">
+                <a href="{% url 'survey_movies' %}" class="btn btn-outline-info" style="text-align: center;color: rgb(255, 255, 255);border: 3px solid rgb(255, 255, 255); margin: 15px 0">Add more movies or TV shows to your liked list! </a>
+            </div>
         </div>
     </div>
-    <div class="container" style="text-align: center;">
-        <a href="{% url 'survey' %}" class="btn btn-outline-info" style="text-align: center;color: rgb(255, 255, 255);border: 3px solid rgb(255, 255, 255);">Complete our survey to get recommended movies! </a>
-    </div>
+    
 </div>
 
 
