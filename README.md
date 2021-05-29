@@ -91,6 +91,4 @@ This will be a system where a user can leave a rating out of 10 on a movie/show 
 - Improve search function for reduced search time
 - Update functions for upcoming movies to show movies correctly
 - User profile page  
-## Trello Board
 
-<img src="src/Screenshot_2021-03-11_191400.png"  width="400">
